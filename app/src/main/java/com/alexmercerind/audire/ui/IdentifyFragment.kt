@@ -3,6 +3,7 @@ package com.alexmercerind.audire.ui
 import android.Manifest
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -31,6 +32,10 @@ class IdentifyFragment : Fragment() {
 
     private val identifyViewModel: IdentifyViewModel by activityViewModels()
     private val historyViewModel: HistoryViewModel by activityViewModels()
+
+    //file upload animator
+    private lateinit var idleFileFloatingActionButtonObjectAnimator: ObjectAnimator
+    private lateinit var visibilityFileFloatingActionButtonObjectAnimator: ObjectAnimator
 
     private lateinit var idleFloatingActionButtonObjectAnimator: ObjectAnimator
     private lateinit var visibilityRecordFloatingActionButtonObjectAnimator: ObjectAnimator
@@ -99,6 +104,28 @@ class IdentifyFragment : Fragment() {
                 }
             }
         }
+
+        // file upload animation, same as audio record animation, but reversed for better look
+        idleFileFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
+            binding.fileFloatingActionButton,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 1.4F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 1.4F, 1.0F),
+        ).apply {
+            duration = 2000L
+            interpolator = AccelerateDecelerateInterpolator()
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }
+        visibilityFileFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
+            binding.fileFloatingActionButton,
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.ALPHA, 0.0F, 1.0F),
+        ).apply {
+            duration = 200L
+            interpolator = AccelerateDecelerateInterpolator()
+        }
+
 
         idleFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
             binding.recordFloatingActionButton,

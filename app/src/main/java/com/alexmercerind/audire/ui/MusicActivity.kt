@@ -118,6 +118,21 @@ class MusicActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
+
+        binding.downloadMaterialButton.setOnClickListener {
+            try {
+                val intent = Intent(Intent.ACTION_SEARCH).apply {
+                    setPackage(YOUTUBE_PACKAGE_NAME)
+                    putExtra(SearchManager.QUERY, music.toSearchQuery())
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(intent)
+            } catch (e: Throwable) {
+                showFailureSnackbar()
+                e.printStackTrace()
+            }
+        }
+
     }
 
     private fun showFailureSnackbar() {

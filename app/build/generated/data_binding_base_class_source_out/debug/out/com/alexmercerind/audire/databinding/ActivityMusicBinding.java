@@ -43,6 +43,9 @@ public final class ActivityMusicBinding implements ViewBinding {
   public final View coverPositionView;
 
   @NonNull
+  public final MaterialButton downloadMaterialButton;
+
+  @NonNull
   public final View flexView;
 
   @NonNull
@@ -80,7 +83,8 @@ public final class ActivityMusicBinding implements ViewBinding {
 
   private ActivityMusicBinding(@NonNull ScrollView rootView, @NonNull Chip albumChip,
       @NonNull TextView artistsTextView, @NonNull ChipGroup chipGroup, @NonNull View colorView,
-      @NonNull ImageView coverImageView, @NonNull View coverPositionView, @NonNull View flexView,
+      @NonNull ImageView coverImageView, @NonNull View coverPositionView,
+      @NonNull MaterialButton downloadMaterialButton, @NonNull View flexView,
       @NonNull View gradientView, @NonNull Chip labelChip, @NonNull Flow linksFlow,
       @NonNull TextView lyricsBodyTextView, @NonNull TextView lyricsTitleTextView,
       @NonNull MaterialButton searchMaterialButton, @NonNull MaterialButton spotifyMaterialButton,
@@ -93,6 +97,7 @@ public final class ActivityMusicBinding implements ViewBinding {
     this.colorView = colorView;
     this.coverImageView = coverImageView;
     this.coverPositionView = coverPositionView;
+    this.downloadMaterialButton = downloadMaterialButton;
     this.flexView = flexView;
     this.gradientView = gradientView;
     this.labelChip = labelChip;
@@ -170,6 +175,12 @@ public final class ActivityMusicBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.downloadMaterialButton;
+      MaterialButton downloadMaterialButton = ViewBindings.findChildViewById(rootView, id);
+      if (downloadMaterialButton == null) {
+        break missingId;
+      }
+
       id = R.id.flexView;
       View flexView = ViewBindings.findChildViewById(rootView, id);
       if (flexView == null) {
@@ -243,10 +254,10 @@ public final class ActivityMusicBinding implements ViewBinding {
       }
 
       return new ActivityMusicBinding((ScrollView) rootView, albumChip, artistsTextView, chipGroup,
-          colorView, coverImageView, coverPositionView, flexView, gradientView, labelChip,
-          linksFlow, lyricsBodyTextView, lyricsTitleTextView, searchMaterialButton,
-          spotifyMaterialButton, statusBarGradientView, titleTextView, yearChip,
-          youtubeMaterialButton);
+          colorView, coverImageView, coverPositionView, downloadMaterialButton, flexView,
+          gradientView, labelChip, linksFlow, lyricsBodyTextView, lyricsTitleTextView,
+          searchMaterialButton, spotifyMaterialButton, statusBarGradientView, titleTextView,
+          yearChip, youtubeMaterialButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

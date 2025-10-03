@@ -18,6 +18,12 @@ import com.alexmercerind.audire.databinding.ActivityMusicBinding
 import com.alexmercerind.audire.mappers.toSearchQuery
 import com.alexmercerind.audire.models.Music
 import com.google.android.material.snackbar.Snackbar
+import com.alexmercerind.audire.api.genius.GeniusApi
+import android.util.Log
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MusicActivity : AppCompatActivity() {
     companion object {
@@ -63,13 +69,23 @@ class MusicActivity : AppCompatActivity() {
         } else {
             binding.labelChip.visibility = View.GONE
         }
-        if (music.lyrics != null) {
-            binding.lyricsBodyTextView.text = music.lyrics
-        } else {
-            binding.lyricsTitleTextView.visibility = View.GONE
-            binding.lyricsBodyTextView.visibility = View.GONE
-        }
 
+        lifecycleScope.launch {
+            val songLyric = withContext(Dispatchers.IO) {
+                GeniusApi.search(music.title) // runs on background thread
+            }
+
+
+            Log.d("lyrics",songLyric)
+
+            if (music.lyrics != null) {
+                binding.lyricsTitleTextView.visibility = View.VISIBLE
+                binding.lyricsBodyTextView.text = songLyric
+            } else {
+                binding.lyricsTitleTextView.visibility = View.GONE
+                binding.lyricsBodyTextView.visibility = View.GONE
+            }
+        }
 
         binding.coverImageView.load(
             music.cover,

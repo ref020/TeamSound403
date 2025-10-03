@@ -22,6 +22,7 @@ drawable baseline_music_note_24
 drawable baseline_search_24
 drawable baseline_settings_24
 drawable baseline_stop_24
+drawable download_24
 drawable github
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -55,6 +56,7 @@ id coverPositionView
 id descriptionTextView
 id developerGitHubLinearLayout
 id developerXLinearLayout
+id downloadMaterialButton
 id fileFloatingActionButton
 id flexView
 id githubLinearLayout
@@ -121,6 +123,7 @@ string developer
 string developer_github
 string developer_name
 string developer_x
+string download
 string find_music_qs_tile
 string github
 string identify_error

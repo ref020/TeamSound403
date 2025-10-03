@@ -199,13 +199,28 @@
             app:icon="@drawable/youtube"
             app:iconPadding="8dp" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/downloadMaterialButton"
+
+            android:layout_width="382dp"
+            android:layout_height="42dp"
+            android:text="@string/download"
+
+            app:icon="@drawable/download_24"
+            app:iconPadding="8dp"
+            app:iconGravity="textStart"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchMaterialButton" />
 
         <TextView
             android:id="@+id/lyricsTitleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="48dp"
             android:layout_marginRight="16dp"
             android:text="@string/lyrics"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"

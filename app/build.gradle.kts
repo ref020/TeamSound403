@@ -16,10 +16,17 @@ android {
         targetSdk = 36
         versionCode = 2
         versionName = "1.1"
+
+        buildConfigField(
+            "String",
+            "GENIUS_ACCESS_TOKEN",
+            "\"lotCNW5w74n4u71jWHC4CDel93El7Br1EJhn43bgut9HJTr1hifaP1RRNe6_zMIB\""
+        )
     }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     buildTypes {
@@ -75,6 +82,8 @@ dependencies {
     implementation("com.github.f4b6a3:uuid-creator:6.1.1")
 
     implementation("io.coil-kt:coil:2.7.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 }

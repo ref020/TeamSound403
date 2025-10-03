@@ -3079,6 +3079,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable download_24
 drawable github
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
@@ -3367,6 +3368,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id downloadMaterialButton
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -4030,6 +4032,7 @@ string developer
 string developer_github
 string developer_name
 string developer_x
+string download
 string error_a11y_label
 string error_icon_content_description
 string exposed_dropdown_menu_content_description

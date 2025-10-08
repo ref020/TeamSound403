@@ -24,6 +24,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.alexmercerind.audire.services.LyricsScraper
+import com.alexmercerind.audire.services.LyricsFormatter
 
 class MusicActivity : AppCompatActivity() {
     companion object {
@@ -34,6 +36,8 @@ class MusicActivity : AppCompatActivity() {
 
     private lateinit var music: Music
     private lateinit var binding: ActivityMusicBinding
+
+    private val LyricsScraper = LyricsScraper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,21 +74,25 @@ class MusicActivity : AppCompatActivity() {
             binding.labelChip.visibility = View.GONE
         }
 
+
+        //uses coroutines to run the function in the background
         lifecycleScope.launch {
-            val songLyric = withContext(Dispatchers.IO) {
-                GeniusApi.search(music.title) // runs on background thread
+            val songLyricURL = withContext(Dispatchers.IO) {
+                GeniusApi.search("${music.title} ${music.artists}") // retreive metadata from Genius
             }
 
+            val songLyric = withContext(Dispatchers.IO) {
+                LyricsScraper.getLyricsFromGenius(songLyricURL) // retreive lyrics from accessed Metadata
+            }
 
+            //print debug in logcat to display variable songLyrics
             Log.d("lyrics",songLyric)
 
-            if (music.lyrics != null) {
-                binding.lyricsTitleTextView.visibility = View.VISIBLE
-                binding.lyricsBodyTextView.text = songLyric
-            } else {
-                binding.lyricsTitleTextView.visibility = View.GONE
-                binding.lyricsBodyTextView.visibility = View.GONE
-            }
+            //display a title for the lyrics section
+            //display the lyrics in a text view
+            binding.lyricsTitleTextView.visibility = View.VISIBLE
+            binding.lyricsBodyTextView.visibility = View.VISIBLE
+            binding.lyricsBodyTextView.text = " ${songLyric}"
         }
 
         binding.coverImageView.load(

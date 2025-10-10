@@ -26,6 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.alexmercerind.audire.services.LyricsScraper
 import com.alexmercerind.audire.services.LyricsFormatter
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.launchIn
+import com.google.android.material.button.MaterialButton
 
 class MusicActivity : AppCompatActivity() {
     companion object {
@@ -36,6 +40,7 @@ class MusicActivity : AppCompatActivity() {
 
     private lateinit var music: Music
     private lateinit var binding: ActivityMusicBinding
+    private lateinit var viewModel: IdentifyViewModel
 
     private val LyricsScraper = LyricsScraper()
 
@@ -73,6 +78,50 @@ class MusicActivity : AppCompatActivity() {
         } else {
             binding.labelChip.visibility = View.GONE
         }
+
+        viewModel = androidx.lifecycle.ViewModelProvider(this)[IdentifyViewModel::class.java]
+        viewModel.fetchRelatedSongs(music)
+        Log.d("GeniusUi", "Starting collection of relatedSongs")
+        viewModel.relatedSongs
+            .onEach { songs ->
+                if (songs.isNotEmpty()) {
+                    binding.geniusSongsTitle.visibility = View.VISIBLE
+                    binding.geniusSongsContainer.visibility = View.VISIBLE
+
+                    // Clear old ones
+                    binding.geniusSongsContainer.removeAllViews()
+
+                    songs.forEach { song ->
+                        val button = MaterialButton(this).apply {
+                            text = song
+                            setIconResource(R.drawable.spotify) // optional
+                            iconPadding = 16
+                            setOnClickListener {
+                                try {
+                                    val intent = Intent(Intent.ACTION_MAIN).apply {
+                                        action = MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH
+                                        component = ComponentName(
+                                            SPOTIFY_PACKAGE_NAME,
+                                            "$SPOTIFY_PACKAGE_NAME.MainActivity"
+                                        )
+                                        putExtra(SearchManager.QUERY, song)
+                                    }
+                                    startActivity(intent)
+                                } catch (e: Throwable) {
+                                    showFailureSnackbar()
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
+                        binding.geniusSongsContainer.addView(button)
+                    }
+                } else {
+                    binding.geniusSongsTitle.visibility = View.GONE
+                    binding.geniusSongsContainer.visibility = View.GONE
+                }
+            }
+            .launchIn(lifecycleScope)
+
 
 
         //uses coroutines to run the function in the background

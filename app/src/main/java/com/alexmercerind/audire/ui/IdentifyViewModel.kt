@@ -12,12 +12,19 @@ import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import android.util.Log
 
 class IdentifyViewModel : ViewModel() {
     val error get() = _error.asSharedFlow()
     val music get() = _music.asSharedFlow()
     val active get() = audioRecorder.active
     val duration get() = audioRecorder.duration
+
+    private val _relatedSongs = MutableStateFlow<List<String>>(emptyList())
+    val relatedSongs = _relatedSongs.asStateFlow()
 
     private val _error = MutableSharedFlow<Unit>()
     private val _music = MutableSharedFlow<Music>()
@@ -45,6 +52,7 @@ class IdentifyViewModel : ViewModel() {
             .sampleImmediate(2000L)
             .onEach { (duration, buffer) ->
                 runCatching {
+                    Log.d("IdentifyDebug", "checking duration=$duration, buffer size=${buffer.size}")
                     if (buffer.isEmpty()) return@onEach
                     if (duration < MIN_DURATION) return@onEach
                     if (duration > MAX_DURATION) {
@@ -52,15 +60,37 @@ class IdentifyViewModel : ViewModel() {
                         audioRecorder.stop()
                         return@onEach
                     }
+                    val result = repository.identify(duration, buffer)
+                    Log.d("ResultDebug", "Identify result = $result")
                     repository.identify(duration, buffer)?.let {
                         // HACK: Prevent obscure music from being displayed if duration lesser than MAX_DURATION.
                         if (it.album.isNullOrEmpty() && duration < MAX_DURATION) return@onEach
                         _music.emit(it)
+                        fetchRelatedSongs(it)
                         audioRecorder.stop()
                     }
                 }
             }
             .launchIn(viewModelScope)
+    }
+
+    fun fetchRelatedSongs(music: Music) {
+        viewModelScope.launch {
+
+            runCatching {
+                val songs = repository.getSongsByArtist(music.artists)
+                Log.d("GeniusDebug", "Artist=${music.artists}, Songs=$songs")
+                if (songs.isNotEmpty()) {
+                    Log.d("GeniusEmit", "About to emit ${songs.size} songs")
+                    _relatedSongs.value = songs.toList()
+                    Log.d("GeniusEmit", "Related songs set: $songs")
+                } else {
+                    Log.d("GeniusEmit", "No songs found for artist ${music.artists}")
+                }
+            }.onFailure {
+                Log.e("GeniusDebug", "Error fetching songs", it)
+            }
+        }
     }
 
     private fun <T> Flow<T>.sampleImmediate(periodMillis: Long): Flow<T> = channelFlow {

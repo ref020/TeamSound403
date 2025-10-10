@@ -16,6 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Calendar
 import kotlin.random.Random
+import com.alexmercerind.audire.api.genius.GeniusService
 
 class ShazamIdentifyRepository : IdentifyRepository() {
     private val client: OkHttpClient by lazy {
@@ -57,6 +58,20 @@ class ShazamIdentifyRepository : IdentifyRepository() {
             USER_AGENTS.random(),
         )
         return response.body()?.toMusic()
+    }
+
+    suspend fun getSongsByArtist(artistName: String): List<String> {
+        // 1. Use the existing identify function to get Music info
+
+        return GeniusService.getSongsByArtist(artistName)
+    }
+
+    // Helper to identify a song by ID (you may already have logic for this)
+    private suspend fun identifySongById(songId: String): Music? {
+        // If you have a way to get the byte array from the song ID, use that
+        // Here we just call your existing identify() method for example
+        val dummyData = ByteArray(1024) // replace with actual audio data
+        return identify(duration = 10, data = dummyData)
     }
 
     companion object {

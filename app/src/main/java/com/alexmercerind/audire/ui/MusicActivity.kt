@@ -102,7 +102,7 @@ class MusicActivity : AppCompatActivity() {
                     songs.forEach { song ->
                         val button = MaterialButton(this).apply {
                             text = song
-                            setIconResource(R.drawable.spotify) // optional
+                            setIconResource(R.drawable.spotify)
                             iconPadding = 16
                             setOnClickListener {
                                 try {

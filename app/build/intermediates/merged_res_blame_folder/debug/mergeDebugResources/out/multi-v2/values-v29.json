@@ -4,7 +4,7 @@
             "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-49:/values-v29/values-v29.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\rayro\\StudioProjects\\TeamSound403\\app\\src\\main\\res\\values-v29\\themes.xml",
+                    "source": "C:\\Users\\remyr\\AndroidStudioProjects\\Projects\\app\\src\\main\\res\\values-v29\\themes.xml",
                     "from": {
                         "startLines": "1,11,17",
                         "startColumns": "4,4,4",

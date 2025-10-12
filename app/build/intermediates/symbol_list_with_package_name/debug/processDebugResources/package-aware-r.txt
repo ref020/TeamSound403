@@ -3414,6 +3414,8 @@ id forever
 id fragment_container_view_tag
 id frost
 id fullscreen_header
+id geniusSongsContainer
+id geniusSongsTitle
 id ghost_view
 id ghost_view_holder
 id githubLinearLayout

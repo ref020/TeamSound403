@@ -59,6 +59,8 @@ id developerXLinearLayout
 id downloadMaterialButton
 id fileFloatingActionButton
 id flexView
+id geniusSongsContainer
+id geniusSongsTitle
 id githubLinearLayout
 id gradientView
 id historyFragment

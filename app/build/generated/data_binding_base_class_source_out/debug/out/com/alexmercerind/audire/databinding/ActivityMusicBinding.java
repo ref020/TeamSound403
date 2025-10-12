@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -49,6 +50,12 @@ public final class ActivityMusicBinding implements ViewBinding {
   public final View flexView;
 
   @NonNull
+  public final LinearLayout geniusSongsContainer;
+
+  @NonNull
+  public final TextView geniusSongsTitle;
+
+  @NonNull
   public final View gradientView;
 
   @NonNull
@@ -85,6 +92,7 @@ public final class ActivityMusicBinding implements ViewBinding {
       @NonNull TextView artistsTextView, @NonNull ChipGroup chipGroup, @NonNull View colorView,
       @NonNull ImageView coverImageView, @NonNull View coverPositionView,
       @NonNull MaterialButton downloadMaterialButton, @NonNull View flexView,
+      @NonNull LinearLayout geniusSongsContainer, @NonNull TextView geniusSongsTitle,
       @NonNull View gradientView, @NonNull Chip labelChip, @NonNull Flow linksFlow,
       @NonNull TextView lyricsBodyTextView, @NonNull TextView lyricsTitleTextView,
       @NonNull MaterialButton searchMaterialButton, @NonNull MaterialButton spotifyMaterialButton,
@@ -99,6 +107,8 @@ public final class ActivityMusicBinding implements ViewBinding {
     this.coverPositionView = coverPositionView;
     this.downloadMaterialButton = downloadMaterialButton;
     this.flexView = flexView;
+    this.geniusSongsContainer = geniusSongsContainer;
+    this.geniusSongsTitle = geniusSongsTitle;
     this.gradientView = gradientView;
     this.labelChip = labelChip;
     this.linksFlow = linksFlow;
@@ -187,6 +197,18 @@ public final class ActivityMusicBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.geniusSongsContainer;
+      LinearLayout geniusSongsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (geniusSongsContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.geniusSongsTitle;
+      TextView geniusSongsTitle = ViewBindings.findChildViewById(rootView, id);
+      if (geniusSongsTitle == null) {
+        break missingId;
+      }
+
       id = R.id.gradientView;
       View gradientView = ViewBindings.findChildViewById(rootView, id);
       if (gradientView == null) {
@@ -255,9 +277,9 @@ public final class ActivityMusicBinding implements ViewBinding {
 
       return new ActivityMusicBinding((ScrollView) rootView, albumChip, artistsTextView, chipGroup,
           colorView, coverImageView, coverPositionView, downloadMaterialButton, flexView,
-          gradientView, labelChip, linksFlow, lyricsBodyTextView, lyricsTitleTextView,
-          searchMaterialButton, spotifyMaterialButton, statusBarGradientView, titleTextView,
-          yearChip, youtubeMaterialButton);
+          geniusSongsContainer, geniusSongsTitle, gradientView, labelChip, linksFlow,
+          lyricsBodyTextView, lyricsTitleTextView, searchMaterialButton, spotifyMaterialButton,
+          statusBarGradientView, titleTextView, yearChip, youtubeMaterialButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

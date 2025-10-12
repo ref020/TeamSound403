@@ -63,7 +63,7 @@ class IdentifyViewModel : ViewModel() {
                     val result = repository.identify(duration, buffer)
                     Log.d("ResultDebug", "Identify result = $result")
                     repository.identify(duration, buffer)?.let {
-                        // HACK: Prevent obscure music from being displayed if duration lesser than MAX_DURATION.
+
                         if (it.album.isNullOrEmpty() && duration < MAX_DURATION) return@onEach
                         _music.emit(it)
                         fetchRelatedSongs(it)

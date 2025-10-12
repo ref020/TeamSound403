@@ -241,6 +241,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lyricsTitleTextView" />
 
+        <TextView
+            android:id="@+id/geniusSongsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="More songs by this artist:"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:paddingTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lyricsBodyTextView" />
+
+        <LinearLayout
+            android:id="@+id/geniusSongsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/geniusSongsTitle" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

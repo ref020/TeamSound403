@@ -9,7 +9,6 @@ import android.util.Log
 
 object GeniusService {
 
-    // take song found by ShazamApi and send it through genius pulling out songs by the artist
     suspend fun getSongsByArtist(artistName: String): List<String> = withContext(Dispatchers.IO) {
         val json = GeniusApi.search(artistName)
 
@@ -25,7 +24,7 @@ object GeniusService {
             .map {it.result.title}
             .take(5) // limits number of songs pulled
 
-        Log.d("GeuisServie", "Parsed songs: $songs")
+        Log.d("GeniusService", "Parsed songs: $songs")
         songs
     }
 }

@@ -180,6 +180,10 @@
         "source": "com.alexmercerind.audire.app-main-53:/mipmap-hdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.alexmercerind.audire.app-debug-51:/xml_network_security_config.xml.flat",
+        "source": "com.alexmercerind.audire.app-main-53:/xml/network_security_config.xml"
+    },
+    {
         "merged": "com.alexmercerind.audire.app-debug-51:/drawable_x.xml.flat",
         "source": "com.alexmercerind.audire.app-main-53:/drawable/x.xml"
     },

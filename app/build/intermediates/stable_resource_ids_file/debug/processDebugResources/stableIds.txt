@@ -5077,6 +5077,7 @@ com.alexmercerind.audire:attr/hideNavigationIcon = 0x7f030234
 com.alexmercerind.audire:attr/collapseContentDescription = 0x7f0300ed
 com.alexmercerind.audire:color/abc_hint_foreground_material_light = 0x7f050008
 com.alexmercerind.audire:attr/dragScale = 0x7f03018f
+com.alexmercerind.audire:xml/network_security_config = 0x7f140002
 com.alexmercerind.audire:dimen/m3_sys_motion_easing_emphasized_accelerate_control_y1 = 0x7f0601f8
 com.alexmercerind.audire:attr/imageButtonStyle = 0x7f03024b
 com.alexmercerind.audire:style/ShapeAppearance.Material3.MediumComponent = 0x7f120178

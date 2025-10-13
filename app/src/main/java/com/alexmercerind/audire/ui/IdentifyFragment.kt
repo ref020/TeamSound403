@@ -3,9 +3,10 @@ package com.alexmercerind.audire.ui
 import android.Manifest
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
-import android.animation.ValueAnimator
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.view.LayoutInflater
@@ -22,14 +23,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.alexmercerind.audire.R
 import com.alexmercerind.audire.databinding.FragmentIdentifyBinding
 import com.alexmercerind.audire.mappers.toHistoryItem
+import com.alexmercerind.audire.utils.FileConverter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
+
 class IdentifyFragment : Fragment() {
     private var _binding: FragmentIdentifyBinding? = null
     private val binding get() = _binding!!
-
     private val identifyViewModel: IdentifyViewModel by activityViewModels()
     private val historyViewModel: HistoryViewModel by activityViewModels()
 
@@ -55,6 +57,25 @@ class IdentifyFragment : Fragment() {
                 showRecordAudioPermissionNotAvailableDialog()
             }
         }
+
+        // file explorer launcher
+        val fileUploadLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                println(it)
+                val openFile = FileConverter()
+                val pcmFileData = openFile.readFile(context, it)
+                // ahhhhhhhhhh
+                //identifyViewModel.start(pcmFileData)
+            }
+
+        }
+
+        // file upload button functionality
+        binding.fileFloatingActionButton.setOnClickListener {
+            fileUploadLauncher.launch("*/*")
+        }
+
+
         binding.recordFloatingActionButton.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(requireActivity(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
                 identifyViewModel.start()
@@ -66,7 +87,7 @@ class IdentifyFragment : Fragment() {
             identifyViewModel.stop()
         }
 
-     viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     identifyViewModel.error.collect {
@@ -92,7 +113,9 @@ class IdentifyFragment : Fragment() {
                 launch {
                     identifyViewModel.active.collect {
                         when (it) {
-                            false -> animateToRecordButton()
+                            false -> {animateToRecordButton()
+                                animateFileUploadButton()
+                            }
                             true -> animateToStopButton()
                         }
                     }
@@ -118,8 +141,8 @@ class IdentifyFragment : Fragment() {
         }
         visibilityFileFloatingActionButtonObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(
             binding.fileFloatingActionButton,
-            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5F, 1.0F),
-            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5F, 1.0F),
+            PropertyValuesHolder.ofFloat(View.SCALE_X, 0.5F, 1.4F),
+            PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.5F, 1.4F),
             PropertyValuesHolder.ofFloat(View.ALPHA, 0.0F, 1.0F),
         ).apply {
             duration = 200L
@@ -164,22 +187,45 @@ class IdentifyFragment : Fragment() {
         }
 
         if (identifyViewModel.active.value) {
+            binding.fileFloatingActionButton.scaleX = 0.5F
+            binding.fileFloatingActionButton.scaleY = 0.5F
+            binding.fileFloatingActionButton.alpha = 0.0F
+
+
+            // shrink and pop file upload button on record press
             binding.recordFloatingActionButton.scaleX = 0.5F
             binding.recordFloatingActionButton.scaleY = 0.5F
             binding.recordFloatingActionButton.alpha = 0.0F
+
             binding.stopButton.scaleX = 1.0F
             binding.stopButton.scaleY = 1.0F
             binding.stopButton.alpha = 1.0F
             binding.waveView.alpha = 1.0F
+
+            idleFileFloatingActionButtonObjectAnimator.cancel()
+
             idleFloatingActionButtonObjectAnimator.cancel()
         } else {
             binding.recordFloatingActionButton.scaleX = 1.0F
             binding.recordFloatingActionButton.scaleY = 1.0F
             binding.recordFloatingActionButton.alpha = 1.0F
+
+
+            // pop in and scale up file upload button when not identifying
+            binding.fileFloatingActionButton.scaleX = 1.4F
+            binding.fileFloatingActionButton.scaleY = 1.4F
+            binding.fileFloatingActionButton.alpha = 1.0F
+
             binding.stopButton.scaleX = 0.5F
             binding.stopButton.scaleY = 0.5F
             binding.stopButton.alpha = 0.0F
             binding.waveView.alpha = 0.0F
+
+
+
+            idleFileFloatingActionButtonObjectAnimator.start()
+
+
             idleFloatingActionButtonObjectAnimator.start()
         }
 
@@ -198,6 +244,16 @@ class IdentifyFragment : Fragment() {
         return view
     }
 
+    private fun animateFileUploadButton() {
+        idleFileFloatingActionButtonObjectAnimator.start()
+        if (binding.fileFloatingActionButton.alpha == 0.0F) {
+            visibilityFileFloatingActionButtonObjectAnimator.start()
+        }
+
+        if (binding.recordFloatingActionButton.alpha == 0.0F) {
+            visibilityRecordFloatingActionButtonObjectAnimator.start()
+        }
+    }
     private fun animateToRecordButton() {
         idleFloatingActionButtonObjectAnimator.start()
 
@@ -214,6 +270,11 @@ class IdentifyFragment : Fragment() {
 
     private fun animateToStopButton() {
         idleFloatingActionButtonObjectAnimator.cancel()
+        idleFileFloatingActionButtonObjectAnimator.cancel()
+
+        if (binding.fileFloatingActionButton.alpha == 1.0F) {
+            visibilityFileFloatingActionButtonObjectAnimator.reverse()
+        }
 
         if (binding.recordFloatingActionButton.alpha == 1.0F) {
             visibilityRecordFloatingActionButtonObjectAnimator.reverse()

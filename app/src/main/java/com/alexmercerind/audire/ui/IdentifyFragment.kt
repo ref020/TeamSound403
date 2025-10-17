@@ -62,10 +62,8 @@ class IdentifyFragment : Fragment() {
         val fileUploadLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 println(it)
-                val openFile = FileConverter()
-                val pcmFileData = openFile.readFile(context, it)
-                // ahhhhhhhhhh
-                //identifyViewModel.start(pcmFileData)
+
+                identifyViewModel.fileUploadIdentify(context, it)
             }
 
         }

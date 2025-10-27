@@ -13,6 +13,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
+import android.util.Log
+import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
+import android.content.Context
+
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
     val historyItems: StateFlow<List<HistoryItem>?>
         get() = _historyItems
@@ -61,7 +65,37 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     fun delete(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.delete(historyItem) }
 
-    fun like(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.like(historyItem) }
+    val prefs = getApplication<Application>().getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
+    val savedPlaylistId = prefs.getString("playlist_id", null)
+    fun like(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
+        repository.like(historyItem)
+        val songName = historyItem.title
+        val artistName = historyItem.artists
+        val albumName = historyItem.album
+        Log.d("LikedSong", "Song Name = $songName Album Name = $albumName")
+        Log.d("LikedSong", "Playlist = $savedPlaylistId")
+        savedPlaylistId?.let { playlistId ->
+            SpotifyPlaylists.addTrackToPlaylist(
+                playlistId = playlistId,
+                songTitle = songName,
+                artistName = artistName,
+                albumName = albumName)
+        }
+    }
 
-    fun unlike(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.unlike(historyItem) }
+    fun unlike(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
+        repository.unlike(historyItem)
+        val songName = historyItem.title
+        val artistName = historyItem.artists
+        val albumName = historyItem.album
+        Log.d("UnlikedSong", "Song Name = $songName Album Name = $albumName")
+        Log.d("UnlikedSong", "Playlist = $savedPlaylistId")
+        savedPlaylistId?.let { playlistId ->
+            SpotifyPlaylists.removeTrackFromPlaylist(
+                playlistId = playlistId,
+                songTitle = songName,
+                artistName = artistName,
+                albumName = albumName)
+        }
+    }
 }

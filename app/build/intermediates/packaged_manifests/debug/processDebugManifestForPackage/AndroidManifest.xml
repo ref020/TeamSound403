@@ -13,6 +13,22 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <queries>
+        <package android:name="com.spotify.music" />
+        <package android:name="com.spotify.music.debug" />
+        <package android:name="com.spotify.music.canary" />
+        <package android:name="com.spotify.music.partners" />
+
+        <intent>
+            <action android:name="com.spotify.sso.action.START_AUTH_FLOW" />
+
+            <data android:mimeType="text/plain" />
+        </intent>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
+    </queries>
+
     <permission
         android:name="com.alexmercerind.audire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -53,6 +69,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="callback"
+                    android:scheme="audire" />
+            </intent-filter>
         </activity>
 
         <service
@@ -83,6 +109,23 @@
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"
                 android:value="androidx.startup" />
         </provider>
+
+        <activity
+            android:name="com.spotify.sdk.android.auth.LoginActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="callback"
+                    android:scheme="audire" />
+            </intent-filter>
+        </activity>
 
         <uses-library
             android:name="androidx.window.extensions"

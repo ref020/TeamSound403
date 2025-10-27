@@ -22,6 +22,11 @@ android {
             "GENIUS_ACCESS_TOKEN",
             "\"lotCNW5w74n4u71jWHC4CDel93El7Br1EJhn43bgut9HJTr1hifaP1RRNe6_zMIB\""
         )
+
+        manifestPlaceholders += mapOf(
+            "redirectSchemeName" to "audire",
+            "redirectHostName"  to "callback"
+        )
     }
 
     buildFeatures {
@@ -86,6 +91,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
 
     implementation("org.jsoup:jsoup:1.17.2")
+
+    implementation("com.spotify.android:auth:2.1.0")
+    implementation("org.json:json:20230227")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 }

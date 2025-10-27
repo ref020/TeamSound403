@@ -39,6 +39,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.MediaType.Companion.toMediaType
 import java.util.concurrent.TimeUnit
 import android.content.Context
+import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
 class MusicActivity : AppCompatActivity() {
     companion object {
         const val MUSIC = "MUSIC"
@@ -90,13 +91,13 @@ class MusicActivity : AppCompatActivity() {
         viewModel = androidx.lifecycle.ViewModelProvider(this)[IdentifyViewModel::class.java]
         viewModel.fetchRelatedSongs(music)
         Log.d("GeniusUi", "Starting collection of relatedSongs")
+
         viewModel.relatedSongs
             .onEach { songs ->
                 if (songs.isNotEmpty()) {
                     binding.geniusSongsTitle.visibility = View.VISIBLE
                     binding.geniusSongsContainer.visibility = View.VISIBLE
 
-                    // Clear old ones
                     binding.geniusSongsContainer.removeAllViews()
 
                     songs.forEach { song ->
@@ -105,19 +106,27 @@ class MusicActivity : AppCompatActivity() {
                             setIconResource(R.drawable.spotify)
                             iconPadding = 16
                             setOnClickListener {
-                                try {
-                                    val intent = Intent(Intent.ACTION_MAIN).apply {
-                                        action = MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH
-                                        component = ComponentName(
-                                            SPOTIFY_PACKAGE_NAME,
-                                            "$SPOTIFY_PACKAGE_NAME.MainActivity"
+                                lifecycleScope.launch {
+                                    try {
+                                        val trackUri = SpotifyPlaylists.searchTrackUri(
+                                            song,
+                                            music.artists,
+                                            music.album
                                         )
-                                        putExtra(SearchManager.QUERY, song)
+
+                                        if (trackUri != null) {
+                                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trackUri)).apply {
+                                                setPackage("com.spotify.music")
+                                            }
+                                            startActivity(intent)
+                                        } else {
+                                            showFailureSnackbar()
+                                            Log.e("SpotifyLaunch", "Track not found for: $song")
+                                        }
+                                    } catch (e: Exception) {
+                                        showFailureSnackbar()
+                                        Log.e("SpotifyLaunch", "Error launching Spotify", e)
                                     }
-                                    startActivity(intent)
-                                } catch (e: Throwable) {
-                                    showFailureSnackbar()
-                                    e.printStackTrace()
                                 }
                             }
                         }
@@ -173,17 +182,17 @@ class MusicActivity : AppCompatActivity() {
             }
         }
         binding.spotifyMaterialButton.setOnClickListener {
-            try {
-                val intent = Intent(Intent.ACTION_MAIN).apply {
-                    action = MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH
-                    component =
-                        ComponentName(SPOTIFY_PACKAGE_NAME, "$SPOTIFY_PACKAGE_NAME.MainActivity")
-                    putExtra(SearchManager.QUERY, music.toSearchQuery())
+            lifecycleScope.launch {
+                val trackUri =
+                    SpotifyPlaylists.searchTrackUri(music.title, music.artists, music.album)
+                trackUri?.let {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it)).apply {
+                        setPackage("com.spotify.music")
+                    }
+                    startActivity(intent)
+                } ?: run {
+                    showFailureSnackbar()
                 }
-                startActivity(intent)
-            } catch (e: Throwable) {
-                showFailureSnackbar()
-                e.printStackTrace()
             }
         }
         binding.youtubeMaterialButton.setOnClickListener {

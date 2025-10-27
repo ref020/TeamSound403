@@ -78,7 +78,7 @@ class IdentifyViewModel : ViewModel() {
         viewModelScope.launch {
 
             runCatching {
-                val songs = repository.getSongsByArtist(music.artists)
+                val songs = repository.getSongsByArtist(music.artists, music.title)
                 Log.d("GeniusDebug", "Artist=${music.artists}, Songs=$songs")
                 if (songs.isNotEmpty()) {
                     Log.d("GeniusEmit", "About to emit ${songs.size} songs")

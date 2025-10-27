@@ -9,8 +9,9 @@ import android.util.Log
 
 object GeniusService {
 
-    suspend fun getSongsByArtist(artistName: String): List<String> = withContext(Dispatchers.IO) {
+    suspend fun getSongsByArtist(artistName: String, songName: String): List<String> = withContext(Dispatchers.IO) {
         val json = GeniusApi.search(artistName)
+
 
         Log.d("GeniusService", "Raw Genius response: $json")
 
@@ -21,6 +22,7 @@ object GeniusService {
 
         val songs = hits
             .filter {it.result.primary_artist.name.equals(artistName, ignoreCase = true)}
+            .filter {it.result.title != songName}
             .map {it.result.title}
             .take(5) // limits number of songs pulled
 

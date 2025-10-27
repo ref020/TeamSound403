@@ -60,8 +60,8 @@ class ShazamIdentifyRepository : IdentifyRepository() {
         return response.body()?.toMusic()
     }
 
-    suspend fun getSongsByArtist(artistName: String): List<String> {
-        return GeniusService.getSongsByArtist(artistName)
+    suspend fun getSongsByArtist(artistName: String, songName: String): List<String> {
+        return GeniusService.getSongsByArtist(artistName, songName)
     }
 
 

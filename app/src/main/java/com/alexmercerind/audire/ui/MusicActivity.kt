@@ -120,7 +120,10 @@ class MusicActivity : AppCompatActivity() {
                                         )
 
                                         if (trackUri != null) {
-                                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trackUri)).apply {
+                                            val intent = Intent(
+                                                Intent.ACTION_VIEW,
+                                                Uri.parse(trackUri)
+                                            ).apply {
                                                 setPackage("com.spotify.music")
                                             }
                                             startActivity(intent)
@@ -145,7 +148,6 @@ class MusicActivity : AppCompatActivity() {
             .launchIn(lifecycleScope)
 
 
-
         //uses coroutines to run the function in the background
         lifecycleScope.launch {
             val songLyricURL = withContext(Dispatchers.IO) {
@@ -157,7 +159,7 @@ class MusicActivity : AppCompatActivity() {
             }
 
             //print debug in logcat to display variable songLyrics
-            Log.d("lyrics",songLyric)
+            Log.d("lyrics", songLyric)
 
             //display a title for the lyrics section
             //display the lyrics in a text view
@@ -245,9 +247,6 @@ class MusicActivity : AppCompatActivity() {
             }
         }
 
-        binding.downloadMaterialButton.setOnClickListener {
-            downloadMP3FromServer(this, "http://10.0.2.2:5000/api/download", music)
-        }
 
     }
 
@@ -256,58 +255,4 @@ class MusicActivity : AppCompatActivity() {
     }
 
 
-    // added to original project: will send a request to a flask server to try and download a song with yt-dlp, then download to device
-    // very much strictly experimental and not scalable for several reasons
-    private fun downloadMP3FromServer(context: Context, url: String, music: Music)
-    {
-        // maybe add artist name as well later, testing for now
-
-        // so I was having some issues testing, extra stuff added just in case slow connection, don't think it really matters
-        val client = OkHttpClient.Builder().connectTimeout(60, TimeUnit.SECONDS).readTimeout(5, TimeUnit.MINUTES).writeTimeout(5, TimeUnit.MINUTES).build()
-
-        // you can 100% get more search parameters, just went with simplest possible way for my own sanity
-        val jsonBody = """{"query": "${music.title}"}"""
-        val requestBody = jsonBody.toRequestBody("application/json".toMediaType())
-
-        // request to send to flask server
-        val request = Request.Builder().url(url).post(requestBody).build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                // err message (server is DOWN!)
-                Log.e("MusicActivity", "Download failed", e)
-                runOnUiThread { showFailureSnackbar() }
-            }
-
-            override fun onResponse(call: Call, response: Response)
-            {
-                if (response.isSuccessful) {
-                    // so this sanitizes because android hates special characters in file names
-                    val fileName = music.title.replace(Regex("[^a-zA-Z0-9._-]"), "_") + ".mp3"
-                    val file = File(context.getExternalFilesDir(null), fileName)
-
-                    // dunno know if '?' is actually required, stuff I saw online had it like this so
-                    // just copies the download from flask server, really stupid simple
-                    response.body?.byteStream()?.use { input ->
-                        FileOutputStream(file).use { output ->
-                            input.copyTo(output)
-                    }
-
-                    }
-
-
-
-
-
-                    Log.d("MusicActivity", "Download successful")
-                    runOnUiThread {
-                        Snackbar.make(binding.root, "Download complete!", Snackbar.LENGTH_SHORT).show()
-                    }
-                } else {
-                    runOnUiThread { showFailureSnackbar() }
-                }
-            }
-        })
-    }
 }
-

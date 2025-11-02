@@ -1,6 +1,8 @@
 package com.alexmercerind.audire.ui
 
 
+import com.alexmercerind.audire.BuildConfig
+import com.alexmercerind.audire.services.YouTubeUrlService
 import android.app.SearchManager
 import android.content.ComponentName
 import android.content.Intent
@@ -40,6 +42,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import java.util.concurrent.TimeUnit
 import android.content.Context
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 class MusicActivity : AppCompatActivity() {
     companion object {
         const val MUSIC = "MUSIC"
@@ -160,6 +165,37 @@ class MusicActivity : AppCompatActivity() {
             binding.lyricsBodyTextView.visibility = View.VISIBLE
             binding.lyricsBodyTextView.text = " ${songLyric}"
         }
+        val youtubePlayerView = binding.youtubePlayerView
+        lifecycle.addObserver(youtubePlayerView)
+        lifecycleScope.launch {
+            val apiKey = BuildConfig.YOUTUBE_API_KEY
+            val query = "${music.title} ${music.artists}"
+            val url = YouTubeUrlService.getYoutubeUrl(query, apiKey)
+            Log.d("YTTest", "YouTube URL: $url")
+            if (url != null) {
+                val videoId = Uri.parse(url).getQueryParameter("v")
+                if (videoId != null) {
+                    withContext(Dispatchers.Main) {
+                        Log.e("YTTest", "Couldn't extract video ID from URL: $videoId")
+                        youtubePlayerView.visibility = View.VISIBLE
+
+                        youtubePlayerView.addYouTubePlayerListener(object :
+                            AbstractYouTubePlayerListener() {
+                            override fun onReady(youTubePlayer: YouTubePlayer) {
+                                youTubePlayer.cueVideo(videoId, 0f)
+                            }
+                        })
+                    }
+
+                } else {
+                    Log.e("YTTest", "Couldn't extract video ID from URL: $url")
+                    showFailureSnackbar()
+                }
+            } else {
+                showFailureSnackbar()
+            }
+        }
+
 
         binding.coverImageView.load(
             music.cover,

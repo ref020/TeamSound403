@@ -22,6 +22,11 @@ android {
             "GENIUS_ACCESS_TOKEN",
             "\"lotCNW5w74n4u71jWHC4CDel93El7Br1EJhn43bgut9HJTr1hifaP1RRNe6_zMIB\""
         )
+        buildConfigField(
+            "String",
+            "YOUTUBE_API_KEY",
+            "\"AIzaSyBR2VhkUNrR5BIjNbrzMeBKQT3RvD_0E08\""
+        )
 
         manifestPlaceholders += mapOf(
             "redirectSchemeName" to "audire",
@@ -94,6 +99,8 @@ dependencies {
 
     implementation("com.spotify.android:auth:2.1.0")
     implementation("org.json:json:20230227")
+
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
 }

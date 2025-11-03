@@ -2,7 +2,6 @@ package com.alexmercerind.audire.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.alexmercerind.audire.models.HistoryItem
 import com.alexmercerind.audire.repository.HistoryRepository
@@ -13,13 +12,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlin.collections.sort
-import androidx.lifecycle.MutableLiveData
-import androidx.sqlite.db.SimpleSQLiteQuery
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.flow.Flow
-
 import android.util.Log
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
 import android.content.Context
@@ -103,11 +97,6 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     private val repository = HistoryRepository(application)
 
-
-    //private val _filterChoices = MutableStateFlow<List<String>>(listOf())
-    val filterArtistChoices: Flow<List<String>> = repository.getFilterArtistChoices()
-
-    val filterYearChoices: Flow<List<String>> = repository.getFilterYearChoices()
     init {
         viewModelScope.launch {
             getAll().collect {
@@ -123,19 +112,19 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     private suspend fun search(query: String) = repository.search(query)
 
 
-    suspend fun getFilterArtistChoices(): Flow<List<String>> {
-        return repository.getFilterArtistChoices()
-    }
-    suspend fun getFilterYearChoices(): Flow<List<String>> {
-        return repository.getFilterYearChoices()
-    }
-
     suspend fun getFilterChoices(): Flow<List<String>> {
         val filterArtistChoices = getFilterArtistChoices()
         val filterYearChoices = getFilterYearChoices()
         return combine(MutableStateFlow("No Filter"), filterArtistChoices, filterYearChoices) { noFilter, artistChoices, yearChoices ->
             (listOf(noFilter) + artistChoices + yearChoices).distinct()
         }
+    }
+
+    fun getFilterArtistChoices(): Flow<List<String>> {
+        return repository.getFilterArtistChoices()
+    }
+    fun getFilterYearChoices(): Flow<List<String>> {
+        return repository.getFilterYearChoices()
     }
 
     fun insert(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.insert(historyItem) }

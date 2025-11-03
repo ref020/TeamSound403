@@ -122,7 +122,7 @@ class LikedFragment : Fragment() {
 
                     if (selected == "No Filter") {
                         historyViewModel.filterType = MutableStateFlow(null)
-                    } else if (selected in historyViewModel.filterArtistChoices.first()) {
+                    } else if (selected in historyViewModel.getFilterArtistChoices().first()) {
                         historyViewModel.filterType = MutableStateFlow("artist")
                         historyViewModel.filterChoice = MutableStateFlow(selected)
                     } else {

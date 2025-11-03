@@ -23,13 +23,6 @@ class HistoryRepository(private val application: Application) {
     suspend fun unlike(historyItem: HistoryItem) =
         HistoryItemDatabase(application).historyItemDao().unlike(historyItem.id!!)
 
-
-    fun getFilteredAndSortedItems(query: SupportSQLiteQuery) =
-        HistoryItemDatabase(application).historyItemDao().getSortedAndFilteredItems(query)
-    //    HistoryItemDatabase(application).historyItemDao().filter(filterBy)
-    //fun sort(sortBy: String) =
-    //    HistoryItemDatabase(application).historyItemDao().sort(sortBy)
-
     fun getFilterArtistChoices() =
         HistoryItemDatabase(application).historyItemDao().getFilterArtistChoices()
 

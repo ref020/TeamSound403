@@ -25,32 +25,10 @@ data class PcmOutputData(
     val durationSec: Int
 )
 class FileConverter() {
-    var returnData = null
-
-    private var job: Job? = null
-
-    val active get() = _active.asStateFlow()
-
-    val duration get() = _duration.asStateFlow()
-
-    private val _active = MutableStateFlow(false)
-
-    private val _duration = MutableStateFlow(0)
-    private val mutex = Mutex()
-    var isAudioTrack: Boolean = false
     val extractor = MediaExtractor()
     var trackIndex = -1
 
     val pcmOutput = ByteArrayOutputStream()
-//    @Throws(SecurityException::class)
-//    fun start() {
-//        scope.launch {
-//            mutex.withLock {
-//                if (_active.value) return@launch
-//                job = scope.launch(Dispatchers.IO) { readFile(context, inputFileUri) }
-//            }
-//        }
-//    }
 
     fun readFile(context: Context?, inputFileUri: Uri): PcmOutputData {
         val pcmDataBufferList = mutableListOf<ByteArray>()
@@ -71,20 +49,11 @@ class FileConverter() {
         }
         println("track selected")
         val inputAudioFormat: MediaFormat = extractor.getTrackFormat(trackIndex)
-//        val sampleRate = if (audioFormat.containsKey(MediaFormat.KEY_SAMPLE_RATE))
-//            audioFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE)
-//        else
-//            44100
-//
-//        val channelCount = if (audioFormat.containsKey(MediaFormat.KEY_CHANNEL_COUNT))
-//            audioFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
-//        else
-//            2
+
         val mime = inputAudioFormat.getString(MediaFormat.KEY_MIME).toString()
 
         val decoder = MediaCodec.createDecoderByType(mime)
-        //val timeoutMicroSeconds = 10000L
-        //val durationUs = audioFormat.getLong(MediaFormat.KEY_DURATION)
+
         decoder.configure(inputAudioFormat, null, null, 0)
         decoder.start()
         val bufferInfo = MediaCodec.BufferInfo()
@@ -97,9 +66,6 @@ class FileConverter() {
                 val inputBuffer: ByteBuffer = decoder.getInputBuffer(inputBufferIndex)!!
                 val sampleSize = extractor.readSampleData(inputBuffer, 0)
 
-                //if (durationUs > 12000000L) {
-                //    return pcmOutput.toByteArray()
-                //}
                 if (sampleSize >= 0) {
                     decoder.queueInputBuffer(inputBufferIndex, 0, sampleSize, extractor.sampleTime, 0)
                     extractor.advance()
@@ -119,21 +85,15 @@ class FileConverter() {
                 outputBuffer.clear()
                 pcmDataBufferList.add(pcmDataChunk)
                 totalOutputBytes += bufferInfo.size
-                //println(pcmDataChunk)
                 decoder.releaseOutputBuffer(outputBufferIndex, false)
-
             }
-//            if (0 != (bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM)) {
-//                break
-//            }
         }
+
         decoder.stop()
         decoder.release()
         extractor.release()
         pfd.close()
 
-        val outputPcmData = pcmOutput.toByteArray()
-        //val durationSec = durationUs / 1000000L
         var sampleRate = inputAudioFormat.getInteger(MediaFormat.KEY_SAMPLE_RATE)
         var channels = inputAudioFormat.getInteger(MediaFormat.KEY_CHANNEL_COUNT)
 
@@ -219,4 +179,3 @@ class FileConverter() {
 
 }
 
-annotation class PcmData

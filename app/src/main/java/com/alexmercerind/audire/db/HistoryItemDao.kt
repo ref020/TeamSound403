@@ -30,12 +30,6 @@ interface HistoryItemDao {
     @Query("UPDATE history_item SET liked = 0 WHERE id = :id")
     suspend fun unlike(id: Int)
 
-    @Query("SELECT * FROM history_item WHERE LOWER(title) LIKE :filter ORDER BY :filter DESC")
-    fun filter(filter: String): Flow<List<HistoryItem>>
-
-    @RawQuery
-    fun getSortedAndFilteredItems(query: SupportSQLiteQuery): List<HistoryItem>
-
     @Query("SELECT DISTINCT artists FROM history_item")
     fun getFilterArtistChoices(): Flow<List<String>>
 

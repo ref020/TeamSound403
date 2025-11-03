@@ -10,9 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -25,10 +22,7 @@ import com.alexmercerind.audire.databinding.FragmentHistoryBinding
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
-import kotlin.collections.emptyList
-
 
 class HistoryFragment : Fragment() {
 
@@ -131,7 +125,7 @@ class HistoryFragment : Fragment() {
 
                     if (selected == "No Filter") {
                         historyViewModel.filterType = MutableStateFlow(null)
-                    } else if (selected in historyViewModel.filterArtistChoices.first()) {
+                    } else if (selected in historyViewModel.getFilterArtistChoices().first()) {
                         historyViewModel.filterType = MutableStateFlow("artist")
                         historyViewModel.filterChoice = MutableStateFlow(selected)
                     } else {

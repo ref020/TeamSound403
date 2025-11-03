@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-51:/values-night-v29/values-night-v29.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\rayro\\StudioProjects\\TeamSound403\\app\\src\\main\\res\\values-night-v29\\themes.xml",
+                    "from": {
+                        "startLines": "1,11,17",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "64,696,1067",
+                        "endLines": "9,15,17",
+                        "endColumns": "12,12,60",
+                        "endOffsets": "688,1059,1123"
+                    },
+                    "to": {
+                        "startLines": "2,11,16",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,676,1040",
+                        "endLines": "10,15,16",
+                        "endColumns": "12,12,59",
+                        "endOffsets": "671,1035,1095"
+                    }
+                }
+            ]
+        }
+    ]
+}

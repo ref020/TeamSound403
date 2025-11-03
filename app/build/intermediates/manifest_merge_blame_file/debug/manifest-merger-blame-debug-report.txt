@@ -1,0 +1,298 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.alexmercerind.audire"
+4    android:versionCode="2"
+5    android:versionName="1.1" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:6:5-71
+12-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:6:22-68
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:7:5-80
+13-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:7:22-77
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:8:5-81
+14-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:8:22-78
+15
+16    <queries>
+16-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:31:5-45:15
+17        <package android:name="com.spotify.music" />
+17-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:32:9-53
+17-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:32:18-50
+18        <package android:name="com.spotify.music.debug" />
+18-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:33:9-59
+18-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:33:18-56
+19        <package android:name="com.spotify.music.canary" />
+19-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:34:9-60
+19-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:34:18-57
+20        <package android:name="com.spotify.music.partners" />
+20-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:35:9-62
+20-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:35:18-59
+21
+22        <intent>
+22-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:37:9-41:18
+23            <action android:name="com.spotify.sso.action.START_AUTH_FLOW" />
+23-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:38:13-77
+23-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:38:21-74
+24
+25            <data android:mimeType="text/plain" />
+26        </intent>
+27        <intent>
+27-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:42:9-44:18
+28            <action android:name="android.support.customtabs.action.CustomTabsService" />
+28-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:43:13-90
+28-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:43:21-87
+29        </intent>
+30    </queries>
+31
+32    <permission
+32-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:22:5-24:47
+33        android:name="com.alexmercerind.audire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+33-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:23:9-81
+34        android:protectionLevel="signature" />
+34-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:24:9-44
+35
+36    <uses-permission android:name="com.alexmercerind.audire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+36-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:26:5-97
+36-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:26:22-94
+37
+38    <application
+38-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-64:19
+39        android:name="com.alexmercerind.audire.Audire"
+39-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:11:9-31
+40        android:allowBackup="true"
+40-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:12:9-35
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.16.0] C:\Users\rayro\.gradle\caches\8.13\transforms\62970081ebb3a83fb9990aa6291ca3ab\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
+42        android:dataExtractionRules="@xml/data_extraction_rules"
+42-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:13:9-65
+43        android:debuggable="true"
+44        android:extractNativeLibs="true"
+45        android:fullBackupContent="@xml/backup_rules"
+45-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:14:9-54
+46        android:icon="@mipmap/ic_launcher"
+46-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:15:9-43
+47        android:label="@string/app_name"
+47-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:16:9-41
+48        android:networkSecurityConfig="@xml/network_security_config"
+48-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:19:9-69
+49        android:roundIcon="@mipmap/ic_launcher_round"
+49-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:17:9-54
+50        android:supportsRtl="true"
+50-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:18:9-35
+51        android:testOnly="true"
+52        android:theme="@style/Theme.Audire"
+52-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:21:9-44
+53        android:usesCleartextTraffic="true" >
+53-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:20:9-44
+54        <activity
+54-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:23:9-25:40
+55            android:name="com.alexmercerind.audire.ui.SettingsActivity"
+55-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:24:13-48
+56            android:exported="false" />
+56-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:25:13-37
+57        <activity
+57-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:26:9-28:40
+58            android:name="com.alexmercerind.audire.ui.AboutActivity"
+58-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:13-45
+59            android:exported="false" />
+59-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:28:13-37
+60        <activity
+60-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:29:9-31:40
+61            android:name="com.alexmercerind.audire.ui.MusicActivity"
+61-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:30:13-45
+62            android:exported="false" />
+62-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:31:13-37
+63        <activity
+63-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:32:9-51:20
+64            android:name="com.alexmercerind.audire.ui.MainActivity"
+64-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:33:13-44
+65            android:exported="true"
+65-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:34:13-36
+66            android:windowSoftInputMode="adjustNothing" >
+66-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:35:13-56
+67            <intent-filter>
+67-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:36:13-40:29
+68                <action android:name="android.intent.action.MAIN" />
+68-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:17-69
+68-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:25-66
+69
+70                <category android:name="android.intent.category.LAUNCHER" />
+70-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:17-77
+70-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:27-74
+71            </intent-filter>
+72            <intent-filter>
+72-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-49:29
+73                <action android:name="android.intent.action.VIEW" />
+73-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:17-69
+73-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:25-66
+74
+75                <category android:name="android.intent.category.DEFAULT" />
+75-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:17-76
+75-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:27-73
+76                <category android:name="android.intent.category.BROWSABLE" />
+76-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:17-78
+76-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:27-75
+77
+78                <data
+79                    android:host="callback"
+79-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:21-55
+80                    android:scheme="audire" />
+80-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:21-59
+81            </intent-filter>
+82        </activity>
+83
+84        <service
+84-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:9-62:19
+85            android:name="com.alexmercerind.audire.services.FindMusicTileService"
+85-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:13-58
+86            android:exported="true"
+86-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:55:13-36
+87            android:icon="@drawable/baseline_graphic_eq_24"
+87-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:13-60
+88            android:label="@string/find_music_qs_tile"
+88-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:13-55
+89            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+89-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:58:13-77
+90            <intent-filter>
+90-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:59:13-61:29
+91                <action android:name="android.service.quicksettings.action.QS_TILE" />
+91-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:17-87
+91-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:25-84
+92            </intent-filter>
+93        </service>
+94
+95        <provider
+95-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+96            android:name="androidx.startup.InitializationProvider"
+96-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+97            android:authorities="com.alexmercerind.audire.androidx-startup"
+97-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+98            android:exported="false" >
+98-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+99            <meta-data
+99-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+100                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+100-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+101                android:value="androidx.startup" />
+101-->[androidx.emoji2:emoji2:1.3.0] C:\Users\rayro\.gradle\caches\8.13\transforms\0aec3ec78815204f375eb0e220d69155\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+102            <meta-data
+102-->[androidx.lifecycle:lifecycle-process:2.9.0] C:\Users\rayro\.gradle\caches\8.13\transforms\88726ec2b5f86431a321235e0ed131d5\transformed\lifecycle-process-2.9.0\AndroidManifest.xml:29:13-31:52
+103                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+103-->[androidx.lifecycle:lifecycle-process:2.9.0] C:\Users\rayro\.gradle\caches\8.13\transforms\88726ec2b5f86431a321235e0ed131d5\transformed\lifecycle-process-2.9.0\AndroidManifest.xml:30:17-78
+104                android:value="androidx.startup" />
+104-->[androidx.lifecycle:lifecycle-process:2.9.0] C:\Users\rayro\.gradle\caches\8.13\transforms\88726ec2b5f86431a321235e0ed131d5\transformed\lifecycle-process-2.9.0\AndroidManifest.xml:31:17-49
+105            <meta-data
+105-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\fd8ed7ef2d68ea95299ae1d29a62ad9f\transformed\okhttp-release\AndroidManifest.xml:16:13-18:52
+106                android:name="okhttp3.internal.platform.PlatformInitializer"
+106-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\fd8ed7ef2d68ea95299ae1d29a62ad9f\transformed\okhttp-release\AndroidManifest.xml:17:17-77
+107                android:value="androidx.startup" />
+107-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\fd8ed7ef2d68ea95299ae1d29a62ad9f\transformed\okhttp-release\AndroidManifest.xml:18:17-49
+108            <meta-data
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+109-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+110                android:value="androidx.startup" />
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+111        </provider>
+112
+113        <activity
+113-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:48:9-63:20
+114            android:name="com.spotify.sdk.android.auth.LoginActivity"
+114-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:49:13-70
+115            android:exported="true"
+115-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:50:13-36
+116            android:launchMode="singleTask"
+116-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:51:13-44
+117            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+117-->[com.spotify.android:auth:2.1.0] C:\Users\rayro\.gradle\caches\8.13\transforms\216391ea26a9f7745b88d66c2ad918e4\transformed\auth-2.1.0\AndroidManifest.xml:52:13-72
+118            <intent-filter android:autoVerify="true" >
+118-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-49:29
+119                <action android:name="android.intent.action.VIEW" />
+119-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:17-69
+119-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:25-66
+120
+121                <category android:name="android.intent.category.DEFAULT" />
+121-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:17-76
+121-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:27-73
+122                <category android:name="android.intent.category.BROWSABLE" />
+122-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:17-78
+122-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:27-75
+123
+124                <data
+125                    android:host="callback"
+125-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:21-55
+126                    android:scheme="audire" />
+126-->C:\Users\rayro\StudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:21-59
+127            </intent-filter>
+128        </activity>
+129
+130        <uses-library
+130-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+131            android:name="androidx.window.extensions"
+131-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+132            android:required="false" />
+132-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+133        <uses-library
+133-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+134            android:name="androidx.window.sidecar"
+134-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+135            android:required="false" />
+135-->[androidx.window:window:1.0.0] C:\Users\rayro\.gradle\caches\8.13\transforms\6d5d4dcb1ddb39430203151175269d29\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+136
+137        <service
+137-->[androidx.room:room-runtime-android:2.7.2] C:\Users\rayro\.gradle\caches\8.13\transforms\040a61f9ae7ed3dfe8e59a52cc6833fd\transformed\room-runtime-release\AndroidManifest.xml:24:9-28:63
+138            android:name="androidx.room.MultiInstanceInvalidationService"
+138-->[androidx.room:room-runtime-android:2.7.2] C:\Users\rayro\.gradle\caches\8.13\transforms\040a61f9ae7ed3dfe8e59a52cc6833fd\transformed\room-runtime-release\AndroidManifest.xml:25:13-74
+139            android:directBootAware="true"
+139-->[androidx.room:room-runtime-android:2.7.2] C:\Users\rayro\.gradle\caches\8.13\transforms\040a61f9ae7ed3dfe8e59a52cc6833fd\transformed\room-runtime-release\AndroidManifest.xml:26:13-43
+140            android:exported="false" />
+140-->[androidx.room:room-runtime-android:2.7.2] C:\Users\rayro\.gradle\caches\8.13\transforms\040a61f9ae7ed3dfe8e59a52cc6833fd\transformed\room-runtime-release\AndroidManifest.xml:27:13-37
+141
+142        <receiver
+142-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+143            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+144            android:directBootAware="false"
+144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+145            android:enabled="true"
+145-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+146            android:exported="true"
+146-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+147            android:permission="android.permission.DUMP" >
+147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+148            <intent-filter>
+148-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+149                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+149-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+149-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+150            </intent-filter>
+151            <intent-filter>
+151-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+152                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+152-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+152-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+153            </intent-filter>
+154            <intent-filter>
+154-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+155                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+156            </intent-filter>
+157            <intent-filter>
+157-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+158                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\rayro\.gradle\caches\8.13\transforms\93193827e90bcc66d838bc587d7a3456\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+159            </intent-filter>
+160        </receiver>
+161    </application>
+162
+163</manifest>

@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Audire"
 include(":app")
+include(":wear")

@@ -1,5 +1,6 @@
 package com.alexmercerind.audire.repository
 
+import android.util.Log
 import com.alexmercerind.audire.api.shazam.ShazamAPI
 import com.alexmercerind.audire.api.shazam.models.Geolocation
 import com.alexmercerind.audire.api.shazam.models.ShazamRequestBody
@@ -59,6 +60,18 @@ class ShazamIdentifyRepository : IdentifyRepository() {
         )
         return response.body()?.toMusic()
     }
+
+    override suspend fun identifyFromAudioData(audioData: ByteArray): Music? {
+        // The watch sends a fixed ~10-second clip.
+        // We provide the duration that the 'identify' function expects.
+        val duration = 10
+
+        Log.d("ShazamIdentifyRepo", "identifyFromAudioData called. Forwarding to internal identify function.")
+
+        // Now, call your existing private method with the required parameters.
+        return identify(duration, audioData)
+    }
+
 
     suspend fun getSongsByArtist(artistName: String, songName: String): List<String> {
         return GeniusService.getSongsByArtist(artistName, songName)

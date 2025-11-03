@@ -2,6 +2,7 @@ package com.alexmercerind.audire.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.alexmercerind.audire.models.HistoryItem
 import com.alexmercerind.audire.repository.HistoryRepository
@@ -12,6 +13,12 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlin.collections.sort
+import androidx.lifecycle.MutableLiveData
+import androidx.sqlite.db.SimpleSQLiteQuery
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.flow.Flow
 
 import android.util.Log
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
@@ -23,43 +30,113 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     private val _historyItems = MutableStateFlow<List<HistoryItem>?>(null)
 
-    var query: String = ""
-        set(value) {
-            // Avoid duplicate operation in Room.
-            if (value == field) {
-                return
-            }
+    //var filterChoices1: List<String> = listOf()
+    var filterType = MutableStateFlow<String?>(null)
+    var filterChoice = MutableStateFlow<String?>(null)
+    var sortChoice = MutableStateFlow<String?>(null)
+    var isAscending = MutableStateFlow<Boolean>(true)
+    var query = MutableStateFlow<String>("")
+//        set(value) {
+//            // Avoid duplicate operation in Room.
+//            if (value == field) {
+//                return
+//            }
+//
+//            field = value
+//            viewModelScope.launch {
+//                mutex.withLock {
+//
+//                    _historyItems.emit(
+//                        when (value) {
+//                            // Search query == "" -> Show all HistoryItem(s)
+//                            "" -> when (value) {
+//                                    null -> getAll().first()
+//                                    else -> getAll().first()
+//                                }
+//                            // Search query != "" -> Show search HistoryItem(s)
+//                            else -> search(value.lowercase())
+//                        }
+//                    )
+//                }
+//            }
 
-            field = value
-            viewModelScope.launch {
+    fun filterSortSearch() {
+        viewModelScope.launch {
+            combine(
+                query,
+                filterType,
+                filterChoice,
+                sortChoice,
+                isAscending
+            ) { query, filterType, filterChoice, sortChoice, isAscending ->
+                FilterSortSearchChoices(query, filterType, filterChoice, sortChoice, isAscending)
+            }.collect { choices ->
                 mutex.withLock {
-                    _historyItems.emit(
-                        when (value) {
-                            // Search query == "" -> Show all HistoryItem(s)
-                            "" -> getAll().first()
-                            // Search query != "" -> Show search HistoryItem(s)
-                            else -> search(value.lowercase())
-                        }
-                    )
+                    val searchItems: List<HistoryItem> = when (choices.query) {
+                        "" -> getAll().first()
+                        else -> search(choices.query.lowercase())
+                    }
+                    val filteredItems: List<HistoryItem> = when (choices.filterType) {
+                        "artist" -> searchItems.filter { it.artists == choices.filterChoice }
+                        "year" -> searchItems.filter { it.year == choices.filterChoice }
+                        else -> searchItems
+                    }
+                    var sortedItems: List<HistoryItem> = when (choices.sortChoice) {
+                        "Date Added" -> filteredItems.sortedBy { it.timestamp }
+                        "Title" -> filteredItems.sortedBy { it.title }
+                        "Year" -> filteredItems.sortedBy { it.year }
+                        "Artist" -> filteredItems.sortedBy { it.artists }
+                        else -> filteredItems
+                    }
+
+                    if (!choices.isAscending) {
+                        sortedItems = sortedItems.reversed()
+                    }
+                    _historyItems.emit(sortedItems)
+                    println("newitermemss")
                 }
+
             }
         }
-
+    }
     private val mutex = Mutex()
 
     private val repository = HistoryRepository(application)
 
+
+    //private val _filterChoices = MutableStateFlow<List<String>>(listOf())
+    val filterArtistChoices: Flow<List<String>> = repository.getFilterArtistChoices()
+
+    val filterYearChoices: Flow<List<String>> = repository.getFilterYearChoices()
     init {
         viewModelScope.launch {
             getAll().collect {
                 _historyItems.emit(it)
             }
+
         }
     }
+
 
     private fun getAll() = repository.getAll()
 
     private suspend fun search(query: String) = repository.search(query)
+
+
+    suspend fun getFilterArtistChoices(): Flow<List<String>> {
+        return repository.getFilterArtistChoices()
+    }
+    suspend fun getFilterYearChoices(): Flow<List<String>> {
+        return repository.getFilterYearChoices()
+    }
+
+    suspend fun getFilterChoices(): Flow<List<String>> {
+        val filterArtistChoices = getFilterArtistChoices()
+        val filterYearChoices = getFilterYearChoices()
+        return combine(MutableStateFlow("No Filter"), filterArtistChoices, filterYearChoices) { noFilter, artistChoices, yearChoices ->
+            (listOf(noFilter) + artistChoices + yearChoices).distinct()
+        }
+    }
 
     fun insert(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.insert(historyItem) }
 
@@ -82,7 +159,6 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                 albumName = albumName)
         }
     }
-
     fun unlike(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
         repository.unlike(historyItem)
         val songName = historyItem.title
@@ -99,3 +175,12 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 }
+
+
+data class FilterSortSearchChoices(
+    var query: String,
+    var filterType: String?,
+    var filterChoice: String?,
+    var sortChoice: String?,
+    val isAscending: Boolean
+)

@@ -4,9 +4,11 @@ package com.alexmercerind.audire.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -28,6 +30,15 @@ public final class FragmentHistoryBinding implements ViewBinding {
   public final AppBarLayout appBarLayout;
 
   @NonNull
+  public final LinearLayout dropdownContainer;
+
+  @NonNull
+  public final TextInputLayout filterDropdownLayout;
+
+  @NonNull
+  public final AutoCompleteTextView filterDropdownMenu;
+
+  @NonNull
   public final LinearLayout historyLinearLayout;
 
   @NonNull
@@ -45,19 +56,37 @@ public final class FragmentHistoryBinding implements ViewBinding {
   @NonNull
   public final TextInputLayout searchTextInputLayout;
 
+  @NonNull
+  public final TextInputLayout sortDropdownLayout;
+
+  @NonNull
+  public final AutoCompleteTextView sortDropdownMenu;
+
+  @NonNull
+  public final Toolbar toolbar2;
+
   private FragmentHistoryBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull AppBarLayout appBarLayout, @NonNull LinearLayout historyLinearLayout,
+      @NonNull AppBarLayout appBarLayout, @NonNull LinearLayout dropdownContainer,
+      @NonNull TextInputLayout filterDropdownLayout,
+      @NonNull AutoCompleteTextView filterDropdownMenu, @NonNull LinearLayout historyLinearLayout,
       @NonNull RecyclerView historyRecyclerView, @NonNull MaterialToolbar primaryMaterialToolbar,
       @NonNull LinearLayout searchLinearLayout, @NonNull TextInputEditText searchTextInputEditText,
-      @NonNull TextInputLayout searchTextInputLayout) {
+      @NonNull TextInputLayout searchTextInputLayout, @NonNull TextInputLayout sortDropdownLayout,
+      @NonNull AutoCompleteTextView sortDropdownMenu, @NonNull Toolbar toolbar2) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
+    this.dropdownContainer = dropdownContainer;
+    this.filterDropdownLayout = filterDropdownLayout;
+    this.filterDropdownMenu = filterDropdownMenu;
     this.historyLinearLayout = historyLinearLayout;
     this.historyRecyclerView = historyRecyclerView;
     this.primaryMaterialToolbar = primaryMaterialToolbar;
     this.searchLinearLayout = searchLinearLayout;
     this.searchTextInputEditText = searchTextInputEditText;
     this.searchTextInputLayout = searchTextInputLayout;
+    this.sortDropdownLayout = sortDropdownLayout;
+    this.sortDropdownMenu = sortDropdownMenu;
+    this.toolbar2 = toolbar2;
   }
 
   @Override
@@ -90,6 +119,24 @@ public final class FragmentHistoryBinding implements ViewBinding {
       id = R.id.appBarLayout;
       AppBarLayout appBarLayout = ViewBindings.findChildViewById(rootView, id);
       if (appBarLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.dropdownContainer;
+      LinearLayout dropdownContainer = ViewBindings.findChildViewById(rootView, id);
+      if (dropdownContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.filterDropdownLayout;
+      TextInputLayout filterDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (filterDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.filterDropdownMenu;
+      AutoCompleteTextView filterDropdownMenu = ViewBindings.findChildViewById(rootView, id);
+      if (filterDropdownMenu == null) {
         break missingId;
       }
 
@@ -129,9 +176,28 @@ public final class FragmentHistoryBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.sortDropdownLayout;
+      TextInputLayout sortDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (sortDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.sortDropdownMenu;
+      AutoCompleteTextView sortDropdownMenu = ViewBindings.findChildViewById(rootView, id);
+      if (sortDropdownMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbar2;
+      Toolbar toolbar2 = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar2 == null) {
+        break missingId;
+      }
+
       return new FragmentHistoryBinding((CoordinatorLayout) rootView, appBarLayout,
-          historyLinearLayout, historyRecyclerView, primaryMaterialToolbar, searchLinearLayout,
-          searchTextInputEditText, searchTextInputLayout);
+          dropdownContainer, filterDropdownLayout, filterDropdownMenu, historyLinearLayout,
+          historyRecyclerView, primaryMaterialToolbar, searchLinearLayout, searchTextInputEditText,
+          searchTextInputLayout, sortDropdownLayout, sortDropdownMenu, toolbar2);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

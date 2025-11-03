@@ -54,5 +54,9 @@
     <string name="year">Year</string>
     <string name="yes">Yes</string>
     <string name="youtube">YouTube</string>
-    <string name="download">Download</string> <!--NEW: for download button in music activity -->
+    <string name="download">Download</string>
+    <string name="filter_and_sort">Filter and Sort</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="share">Share</string> <!--NEW: for download button in music activity -->
 </resources>

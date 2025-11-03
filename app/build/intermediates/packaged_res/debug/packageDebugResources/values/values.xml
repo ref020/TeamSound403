@@ -17,6 +17,8 @@
     <string name="developer_name">Hitesh Kumar Saini</string>
     <string name="developer_x">Follow on X</string>
     <string name="download">Download</string>
+    <string name="filter">Filter</string>
+    <string name="filter_and_sort">Filter and Sort</string>
     <string name="find_music_qs_tile">Find music</string>
     <string name="github">GitHub</string>
     <string name="identify_error">Could not identify. Retry?</string>
@@ -57,6 +59,8 @@
     <string name="settings_backup_import_fail">Import failed</string>
     <string name="settings_backup_import_success">Import successful</string>
     <string name="settings_backup_import_supporting_text">Restore history from JSON file</string>
+    <string name="share">Share</string>
+    <string name="sort">Sort</string>
     <string name="spotify">Spotify</string>
     <string name="year">Year</string>
     <string name="yes">Yes</string>

@@ -9,6 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -18,8 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alexmercerind.audire.R
 import com.alexmercerind.audire.ui.adapters.HistoryItemAdapter
 import com.alexmercerind.audire.databinding.FragmentHistoryBinding
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
+import kotlin.collections.emptyList
+
 
 class HistoryFragment : Fragment() {
 
@@ -36,13 +45,17 @@ class HistoryFragment : Fragment() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         override fun afterTextChanged(s: Editable?) {
-            historyViewModel.query = s.toString()
+            historyViewModel.query = MutableStateFlow(s.toString())
+            historyViewModel.filterSortSearch()
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+
+        //val filterChoices: List<String> = historyViewModel.filterChoices1
         imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
@@ -67,7 +80,7 @@ class HistoryFragment : Fragment() {
                 historyViewModel.historyItems.filterNotNull().collect {
                     if (it.isEmpty()) {
                         binding.historyRecyclerView.visibility = View.GONE
-                        if (historyViewModel.query.isEmpty()) {
+                        if (historyViewModel.query == MutableStateFlow("")) {
                             // No HistoryItem(s) by default.
                             binding.historyLinearLayout.visibility = View.VISIBLE
                             binding.searchLinearLayout.visibility = View.GONE
@@ -94,6 +107,71 @@ class HistoryFragment : Fragment() {
                 }
             }
         }
+
+        val sortChoices = listOf("Artist: Ascending", "Artist: Descending", "Date Added: Ascending", "Date Added: Descending", "Title: Ascending", "Title: Descending", "Year Released: Ascending", "Year Released: Descending")
+        var sortDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, sortChoices)
+        var filterDropdownAdapter: ArrayAdapter<String?>? = null
+        lifecycleScope.launch {
+            historyViewModel.getFilterChoices().collect { choices ->
+                filterDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, choices)
+
+            }
+        }
+
+        binding.filterDropdownMenu.setOnClickListener {
+            binding.filterDropdownMenu.setAdapter(filterDropdownAdapter)
+            binding.filterDropdownMenu.showDropDown()
+        }
+
+
+        binding.filterDropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            lifecycleScope.launch {
+                historyViewModel.getFilterChoices().collect { choices ->
+                    val selected = choices[position]
+
+                    if (selected == "No Filter") {
+                        historyViewModel.filterType = MutableStateFlow(null)
+                    } else if (selected in historyViewModel.filterArtistChoices.first()) {
+                        historyViewModel.filterType = MutableStateFlow("artist")
+                        historyViewModel.filterChoice = MutableStateFlow(selected)
+                    } else {
+                        historyViewModel.filterType = MutableStateFlow("year")
+                        historyViewModel.filterChoice = MutableStateFlow(selected)
+                    }
+
+                    historyViewModel.filterSortSearch()
+                }
+            }
+        }
+
+        binding.sortDropdownMenu.setOnClickListener {
+            binding.sortDropdownMenu.setAdapter(sortDropdownAdapter)
+            binding.sortDropdownMenu.showDropDown()
+        }
+
+        binding.sortDropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            println(position)
+            lifecycleScope.launch {
+                val selected = sortChoices[position]
+                if (position == 0 || position == 1) {
+                    historyViewModel.sortChoice = MutableStateFlow("Artist")
+                } else if (position == 2 || position == 3) {
+                    historyViewModel.sortChoice = MutableStateFlow("Date Added")
+                } else if (position == 4 || position == 5) {
+                    historyViewModel.sortChoice = MutableStateFlow("Title")
+                } else if (position == 6 || position == 7) {
+                    historyViewModel.sortChoice = MutableStateFlow("Year")
+                }
+                if (position % 2 == 0) {
+                    historyViewModel.isAscending = MutableStateFlow(true)
+                } else {
+                    historyViewModel.isAscending = MutableStateFlow(false)
+                    println("noSort")
+                }
+                historyViewModel.filterSortSearch()
+            }
+        }
+
 
 
         binding.primaryMaterialToolbar.setOnMenuItemClickListener {
@@ -127,7 +205,7 @@ class HistoryFragment : Fragment() {
         super.onStop()
         binding.searchTextInputEditText.removeTextChangedListener(watcher)
         binding.searchTextInputEditText.text?.clear()
-        historyViewModel.query = ""
+        historyViewModel.query = MutableStateFlow("")
     }
 
     override fun onDestroyView() {

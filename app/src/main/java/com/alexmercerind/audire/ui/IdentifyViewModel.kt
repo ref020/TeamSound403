@@ -1,5 +1,7 @@
 package com.alexmercerind.audire.ui
 
+import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alexmercerind.audire.models.Music
@@ -16,6 +18,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import android.util.Log
+import com.alexmercerind.audire.utils.FileConverter
+import kotlinx.coroutines.newCoroutineContext
 
 class IdentifyViewModel : ViewModel() {
     val error get() = _error.asSharedFlow()
@@ -33,26 +37,18 @@ class IdentifyViewModel : ViewModel() {
     private val repository = ShazamIdentifyRepository()
 
     fun start() {
+
         audioRecorder.start()
-    }
-
-    fun stop() {
-        audioRecorder.stop()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        audioRecorder.stop()
-    }
-
-    init {
         combine(audioRecorder.duration, audioRecorder.buffer) { duration, buffer ->
             duration to buffer
         }
             .sampleImmediate(2000L)
             .onEach { (duration, buffer) ->
                 runCatching {
-                    Log.d("IdentifyDebug", "checking duration=$duration, buffer size=${buffer.size}")
+                    Log.d(
+                        "IdentifyDebug",
+                        "checking duration=$duration, buffer size=${buffer.size}"
+                    )
                     if (buffer.isEmpty()) return@onEach
                     if (duration < MIN_DURATION) return@onEach
                     if (duration > MAX_DURATION) {
@@ -74,6 +70,54 @@ class IdentifyViewModel : ViewModel() {
             .launchIn(viewModelScope)
     }
 
+    fun stop() {
+        audioRecorder.stop()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        audioRecorder.stop()
+    }
+
+    init {
+
+
+    }
+
+    fun fileUploadIdentify(context: Context?, fileUri: Uri) {
+            println("file uload")
+            viewModelScope.launch {
+
+                runCatching {
+                    println("converting file")
+                    val fileConverter = FileConverter()
+                    println("file converted")
+                    val pcmData = fileConverter.readFile(context, fileUri!!)
+
+                    val pcmBytes = pcmData.pcmOutputData
+                    val durationSec = (pcmData.durationSec)
+                    println(pcmBytes)
+                    println(durationSec)
+                    println(pcmData.sampleRate)
+                    println(pcmData.channels)
+                    if (pcmBytes.isEmpty()) return@launch
+                    if (durationSec < MIN_DURATION) {
+                        _error.emit(Unit)
+                        return@launch
+                    }
+                    val result = repository.identify(durationSec, pcmBytes)
+                    Log.d("ResultDebug", "Identify result = $result")
+                    repository.identify(durationSec, pcmBytes)?.let {
+
+                        if (it.album.isNullOrEmpty() && durationSec < MAX_DURATION) return@launch
+                        _music.emit(it)
+                        fetchRelatedSongs(it)
+                    }
+                }.onFailure {
+                    Log.e("Identify Debug", "Error song", it)
+                }
+            }
+    }
     fun fetchRelatedSongs(music: Music) {
         viewModelScope.launch {
 

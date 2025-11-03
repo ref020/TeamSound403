@@ -34,6 +34,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.alexmercerind.audire.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.alexmercerind.audire.Audire"

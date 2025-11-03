@@ -11,12 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.helper.widget.Flow;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.alexmercerind.audire.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -44,9 +46,6 @@ public final class ActivityMusicBinding implements ViewBinding {
   public final View coverPositionView;
 
   @NonNull
-  public final MaterialButton downloadMaterialButton;
-
-  @NonNull
   public final View flexView;
 
   @NonNull
@@ -68,10 +67,16 @@ public final class ActivityMusicBinding implements ViewBinding {
   public final TextView lyricsBodyTextView;
 
   @NonNull
+  public final NestedScrollView lyricsScrollView;
+
+  @NonNull
   public final TextView lyricsTitleTextView;
 
   @NonNull
   public final MaterialButton searchMaterialButton;
+
+  @NonNull
+  public final MaterialButton shareMaterialButton;
 
   @NonNull
   public final MaterialButton spotifyMaterialButton;
@@ -88,16 +93,19 @@ public final class ActivityMusicBinding implements ViewBinding {
   @NonNull
   public final MaterialButton youtubeMaterialButton;
 
+  @NonNull
+  public final YouTubePlayerView youtubePlayerView;
+
   private ActivityMusicBinding(@NonNull ScrollView rootView, @NonNull Chip albumChip,
       @NonNull TextView artistsTextView, @NonNull ChipGroup chipGroup, @NonNull View colorView,
-      @NonNull ImageView coverImageView, @NonNull View coverPositionView,
-      @NonNull MaterialButton downloadMaterialButton, @NonNull View flexView,
+      @NonNull ImageView coverImageView, @NonNull View coverPositionView, @NonNull View flexView,
       @NonNull LinearLayout geniusSongsContainer, @NonNull TextView geniusSongsTitle,
       @NonNull View gradientView, @NonNull Chip labelChip, @NonNull Flow linksFlow,
-      @NonNull TextView lyricsBodyTextView, @NonNull TextView lyricsTitleTextView,
-      @NonNull MaterialButton searchMaterialButton, @NonNull MaterialButton spotifyMaterialButton,
+      @NonNull TextView lyricsBodyTextView, @NonNull NestedScrollView lyricsScrollView,
+      @NonNull TextView lyricsTitleTextView, @NonNull MaterialButton searchMaterialButton,
+      @NonNull MaterialButton shareMaterialButton, @NonNull MaterialButton spotifyMaterialButton,
       @NonNull View statusBarGradientView, @NonNull TextView titleTextView, @NonNull Chip yearChip,
-      @NonNull MaterialButton youtubeMaterialButton) {
+      @NonNull MaterialButton youtubeMaterialButton, @NonNull YouTubePlayerView youtubePlayerView) {
     this.rootView = rootView;
     this.albumChip = albumChip;
     this.artistsTextView = artistsTextView;
@@ -105,7 +113,6 @@ public final class ActivityMusicBinding implements ViewBinding {
     this.colorView = colorView;
     this.coverImageView = coverImageView;
     this.coverPositionView = coverPositionView;
-    this.downloadMaterialButton = downloadMaterialButton;
     this.flexView = flexView;
     this.geniusSongsContainer = geniusSongsContainer;
     this.geniusSongsTitle = geniusSongsTitle;
@@ -113,13 +120,16 @@ public final class ActivityMusicBinding implements ViewBinding {
     this.labelChip = labelChip;
     this.linksFlow = linksFlow;
     this.lyricsBodyTextView = lyricsBodyTextView;
+    this.lyricsScrollView = lyricsScrollView;
     this.lyricsTitleTextView = lyricsTitleTextView;
     this.searchMaterialButton = searchMaterialButton;
+    this.shareMaterialButton = shareMaterialButton;
     this.spotifyMaterialButton = spotifyMaterialButton;
     this.statusBarGradientView = statusBarGradientView;
     this.titleTextView = titleTextView;
     this.yearChip = yearChip;
     this.youtubeMaterialButton = youtubeMaterialButton;
+    this.youtubePlayerView = youtubePlayerView;
   }
 
   @Override
@@ -185,12 +195,6 @@ public final class ActivityMusicBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.downloadMaterialButton;
-      MaterialButton downloadMaterialButton = ViewBindings.findChildViewById(rootView, id);
-      if (downloadMaterialButton == null) {
-        break missingId;
-      }
-
       id = R.id.flexView;
       View flexView = ViewBindings.findChildViewById(rootView, id);
       if (flexView == null) {
@@ -233,6 +237,12 @@ public final class ActivityMusicBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.lyricsScrollView;
+      NestedScrollView lyricsScrollView = ViewBindings.findChildViewById(rootView, id);
+      if (lyricsScrollView == null) {
+        break missingId;
+      }
+
       id = R.id.lyricsTitleTextView;
       TextView lyricsTitleTextView = ViewBindings.findChildViewById(rootView, id);
       if (lyricsTitleTextView == null) {
@@ -242,6 +252,12 @@ public final class ActivityMusicBinding implements ViewBinding {
       id = R.id.searchMaterialButton;
       MaterialButton searchMaterialButton = ViewBindings.findChildViewById(rootView, id);
       if (searchMaterialButton == null) {
+        break missingId;
+      }
+
+      id = R.id.shareMaterialButton;
+      MaterialButton shareMaterialButton = ViewBindings.findChildViewById(rootView, id);
+      if (shareMaterialButton == null) {
         break missingId;
       }
 
@@ -275,11 +291,18 @@ public final class ActivityMusicBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.youtube_player_view;
+      YouTubePlayerView youtubePlayerView = ViewBindings.findChildViewById(rootView, id);
+      if (youtubePlayerView == null) {
+        break missingId;
+      }
+
       return new ActivityMusicBinding((ScrollView) rootView, albumChip, artistsTextView, chipGroup,
-          colorView, coverImageView, coverPositionView, downloadMaterialButton, flexView,
-          geniusSongsContainer, geniusSongsTitle, gradientView, labelChip, linksFlow,
-          lyricsBodyTextView, lyricsTitleTextView, searchMaterialButton, spotifyMaterialButton,
-          statusBarGradientView, titleTextView, yearChip, youtubeMaterialButton);
+          colorView, coverImageView, coverPositionView, flexView, geniusSongsContainer,
+          geniusSongsTitle, gradientView, labelChip, linksFlow, lyricsBodyTextView,
+          lyricsScrollView, lyricsTitleTextView, searchMaterialButton, shareMaterialButton,
+          spotifyMaterialButton, statusBarGradientView, titleTextView, yearChip,
+          youtubeMaterialButton, youtubePlayerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -5,6 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.alexmercerind.audire.models.HistoryItem
 import kotlinx.coroutines.flow.Flow
 
@@ -27,4 +29,16 @@ interface HistoryItemDao {
 
     @Query("UPDATE history_item SET liked = 0 WHERE id = :id")
     suspend fun unlike(id: Int)
+
+    @Query("SELECT * FROM history_item WHERE LOWER(title) LIKE :filter ORDER BY :filter DESC")
+    fun filter(filter: String): Flow<List<HistoryItem>>
+
+    @RawQuery
+    fun getSortedAndFilteredItems(query: SupportSQLiteQuery): List<HistoryItem>
+
+    @Query("SELECT DISTINCT artists FROM history_item")
+    fun getFilterArtistChoices(): Flow<List<String>>
+
+    @Query("SELECT DISTINCT year FROM history_item")
+    fun getFilterYearChoices(): Flow<List<String>>
 }

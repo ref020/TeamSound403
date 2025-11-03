@@ -5,46 +5,50 @@ import com.alexmercerind.audire.BuildConfig
 import com.alexmercerind.audire.services.YouTubeUrlService
 import android.app.SearchManager
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import coil.ImageLoader
 import coil.load
 import coil.request.CachePolicy
 import com.alexmercerind.audire.R
+import com.alexmercerind.audire.api.genius.GeniusApi
 import com.alexmercerind.audire.databinding.ActivityMusicBinding
 import com.alexmercerind.audire.mappers.toSearchQuery
 import com.alexmercerind.audire.models.Music
+import com.alexmercerind.audire.services.LyricsScraper
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
-import com.alexmercerind.audire.api.genius.GeniusApi
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.alexmercerind.audire.services.LyricsScraper
-import com.alexmercerind.audire.services.LyricsFormatter
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.launchIn
-import com.google.android.material.button.MaterialButton
-import okhttp3.*
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.MediaType.Companion.toMediaType
 import java.util.concurrent.TimeUnit
-import android.content.Context
+
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
 class MusicActivity : AppCompatActivity() {
     companion object {
         const val MUSIC = "MUSIC"
@@ -223,6 +227,7 @@ class MusicActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 val trackUri =
                     SpotifyPlaylists.searchTrackUri(music.title, music.artists, music.album)
+
                 trackUri?.let {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it)).apply {
                         setPackage("com.spotify.music")
@@ -248,6 +253,51 @@ class MusicActivity : AppCompatActivity() {
         }
 
 
+        binding.shareMaterialButton.setOnClickListener {
+            lifecycleScope.launch {
+                val trackUri =
+                    SpotifyPlaylists.searchTrackUri(music.title, music.artists, music.album)
+                if (trackUri != null) {
+                    val trackUrl =
+                        "https://open.spotify.com/track/${trackUri.removePrefix("spotify:track:")}"
+                    println(trackUrl)
+                        val sharingIntent = Intent(Intent.ACTION_SEND)
+                        sharingIntent.setType("text/plain")
+                        val shareBody = "Check out this song I found with Audire:\n$trackUrl"
+                        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here")
+                        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        startActivity(Intent.createChooser(sharingIntent, "Share via"))
+                } else {
+                    lifecycleScope.launch {
+                        val apiKey = BuildConfig.YOUTUBE_API_KEY
+                        val query = "${music.title} ${music.artists}"
+                        val trackUrl = YouTubeUrlService.getYoutubeUrl(query, apiKey)
+                        if (trackUrl != null) {
+                            val sharingIntent = Intent(Intent.ACTION_SEND)
+                            sharingIntent.setType("text/plain")
+                            val shareBody = "Check out this song I found with Audire:\n$trackUrl"
+                            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here")
+                            sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                            startActivity(Intent.createChooser(sharingIntent, "Share via"))
+                        } else {
+                            try {
+                                val trackUri = Uri.parse("https://www.duckduckgo.com/?q=${music.toSearchQuery()}")
+                                val sharingIntent = Intent(Intent.ACTION_SEND)
+                                sharingIntent.setType("text/plain")
+                                val shareBody = "Check out this song I found with Audire:\n$trackUri"
+                                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here")
+                                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                                startActivity(Intent.createChooser(sharingIntent, "Share via"))
+                            } catch (e: Throwable) {
+                                showFailureSnackbar()
+                                e.printStackTrace()
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun showFailureSnackbar() {

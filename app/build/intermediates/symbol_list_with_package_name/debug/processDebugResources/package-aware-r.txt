@@ -153,6 +153,7 @@ attr attributeName
 attr autoAdjustToWithinGrandparentBounds
 attr autoCompleteMode
 attr autoCompleteTextViewStyle
+attr autoPlay
 attr autoShowKeyboard
 attr autoSizeMaxTextSize
 attr autoSizeMinTextSize
@@ -512,6 +513,7 @@ attr elevationOverlayAccentColor
 attr elevationOverlayColor
 attr elevationOverlayEnabled
 attr emojiCompatEnabled
+attr enableAutomaticInitialization
 attr enableEdgeToEdge
 attr endIconCheckable
 attr endIconContentDescription
@@ -641,6 +643,7 @@ attr grid_verticalGaps
 attr guidelineUseRtl
 attr haloColor
 attr haloRadius
+attr handleNetworkEvents
 attr headerLayout
 attr height
 attr helperText
@@ -1356,6 +1359,7 @@ attr useMaterialThemeColors
 attr values
 attr verticalOffset
 attr verticalOffsetWithText
+attr videoId
 attr viewInflaterClass
 attr viewTransitionMode
 attr viewTransitionOnCross
@@ -3379,7 +3383,6 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
-id downloadMaterialButton
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3388,6 +3391,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id dropdownContainer
 id dropdown_menu
 id easeIn
 id easeInOut
@@ -3412,6 +3416,8 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id filterDropdownLayout
+id filterDropdownMenu
 id fitCenter
 id fitEnd
 id fitStart
@@ -3484,6 +3490,7 @@ id list_item
 id locale
 id ltr
 id lyricsBodyTextView
+id lyricsScrollView
 id lyricsTitleTextView
 id m3_side_sheet
 id marquee
@@ -3655,6 +3662,7 @@ id settingsAppearanceThemeSupportingText
 id settingsBackupExportLinearLayout
 id settingsBackupImportLinearLayout
 id settingsScrollView
+id shareMaterialButton
 id sharedValueSet
 id sharedValueUnset
 id shortcut
@@ -3671,6 +3679,8 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id sortDropdownLayout
+id sortDropdownMenu
 id south
 id spacer
 id special_effects_controller_view_tag
@@ -3721,6 +3731,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3736,6 +3747,7 @@ id titleDividerNoCustom
 id titleTextView
 id title_template
 id toggle
+id toolbar2
 id top
 id topPanel
 id touch_outside
@@ -3779,6 +3791,7 @@ id x_left
 id x_right
 id yearChip
 id youtubeMaterialButton
+id youtube_player_view
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -3918,6 +3931,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dropdown_menu
 layout fragment_history
 layout fragment_identify
 layout history_item
@@ -3991,6 +4005,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 navigation content_nav_graph
 plurals mtrl_badge_content_description
+raw ayp_youtube_player
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -4060,6 +4075,8 @@ string fab_transformation_sheet_behavior
 string fallback_menu_item_copy_link
 string fallback_menu_item_open_in_browser
 string fallback_menu_item_share_link
+string filter
+string filter_and_sort
 string find_music_qs_tile
 string github
 string hide_bottom_view_on_scroll_behavior
@@ -4214,8 +4231,10 @@ string settings_backup_import
 string settings_backup_import_fail
 string settings_backup_import_success
 string settings_backup_import_supporting_text
+string share
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string sort
 string spotify
 string status_bar_notification_info_overflow
 string year
@@ -5519,6 +5538,7 @@ styleable ViewBackgroundHelper android_background backgroundTint backgroundTintM
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
+styleable YouTubePlayerView autoPlay enableAutomaticInitialization handleNetworkEvents videoId
 styleable include constraintSet
 xml backup_rules
 xml data_extraction_rules

@@ -13,17 +13,18 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical">
 
+
         <ImageView
             android:id="@+id/coverImageView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10"
             android:contentDescription="@string/cover_art"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,6 +56,7 @@
                 android:background="?attr/colorSurface" />
         </LinearLayout>
 
+
         <View
             android:id="@+id/coverPositionView"
             android:layout_width="match_parent"
@@ -64,6 +66,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <View
             android:id="@+id/statusBarGradientView"
             android:layout_width="match_parent"
@@ -72,6 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/titleTextView"
@@ -101,6 +105,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
@@ -149,25 +154,25 @@
                 app:chipIconTint="?attr/colorPrimary"
                 app:ensureMinTouchTargetSize="false" />
 
+
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/linksFlow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            app:constraint_referenced_ids="searchMaterialButton,spotifyMaterialButton,youtubeMaterialButton"
+            app:constraint_referenced_ids="searchMaterialButton,spotifyMaterialButton,youtubeMaterialButton, shareMaterialButton"
             app:flow_horizontalAlign="start"
             app:flow_horizontalBias="0.0"
-            app:flow_horizontalGap="16dp"
             app:flow_horizontalStyle="packed"
             app:flow_verticalAlign="center"
             app:flow_verticalBias="0.0"
             app:flow_verticalGap="0dp"
             app:flow_wrapMode="aligned"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+            app:layout_constraintTop_toBottomOf="@id/chipGroup"
+            tools:layout_editor_absoluteX="16dp"
+            android:paddingHorizontal="1dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/searchMaterialButton"
@@ -176,7 +181,7 @@
             android:layout_height="wrap_content"
             android:text="@string/search"
             app:icon="@drawable/baseline_search_24"
-            app:iconPadding="8dp"
+            app:iconPadding="4dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/spotifyMaterialButton" />
 
         <com.google.android.material.button.MaterialButton
@@ -186,7 +191,7 @@
             android:layout_height="wrap_content"
             android:text="@string/spotify"
             app:icon="@drawable/spotify"
-            app:iconPadding="8dp"
+            app:iconPadding="4dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/youtubeMaterialButton" />
 
         <com.google.android.material.button.MaterialButton
@@ -197,49 +202,66 @@
             android:text="@string/youtube"
 
             app:icon="@drawable/youtube"
-            app:iconPadding="8dp" />
+            app:iconPadding="4dp"
+            />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/downloadMaterialButton"
+            android:id="@+id/shareMaterialButton"
+            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
 
-            android:layout_width="382dp"
-            android:layout_height="42dp"
-            android:text="@string/download"
-
-            app:icon="@drawable/download_24"
-            app:iconPadding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share"
             app:iconGravity="textStart"
+            app:iconPadding="4dp"
+            />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchMaterialButton" />
 
-        <TextView
-            android:id="@+id/lyricsTitleTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginRight="16dp"
-            android:text="@string/lyrics"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linksFlow" />
-
-        <TextView
-            android:id="@+id/lyricsBodyTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"
             android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:paddingBottom="72dp"
-            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintTop_toBottomOf="@+id/searchMaterialButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/lyricsScrollView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:fillViewport="true"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/youtube_player_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lyricsTitleTextView" />
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/lyricsTitleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lyrics"
+                    android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+                    android:layout_marginBottom="8dp" />
+
+
+
+                <TextView
+                    android:id="@+id/lyricsBodyTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
         <TextView
             android:id="@+id/geniusSongsTitle"
@@ -250,7 +272,7 @@
             android:visibility="gone"
             android:paddingTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lyricsBodyTextView" />
+            app:layout_constraintTop_toBottomOf="@id/lyricsScrollView" />
 
         <LinearLayout
             android:id="@+id/geniusSongsContainer"

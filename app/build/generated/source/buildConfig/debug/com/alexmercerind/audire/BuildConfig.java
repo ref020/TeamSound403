@@ -11,4 +11,6 @@ public final class BuildConfig {
   public static final String VERSION_NAME = "1.1";
   // Field from default config.
   public static final String GENIUS_ACCESS_TOKEN = "lotCNW5w74n4u71jWHC4CDel93El7Br1EJhn43bgut9HJTr1hifaP1RRNe6_zMIB";
+  // Field from default config.
+  public static final String YOUTUBE_API_KEY = "AIzaSyBR2VhkUNrR5BIjNbrzMeBKQT3RvD_0E08";
 }

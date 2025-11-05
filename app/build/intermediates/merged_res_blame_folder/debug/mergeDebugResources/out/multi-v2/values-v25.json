@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-51:/values-v25/values-v25.xml",
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-53:/values-v25/values-v25.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\8cbd2649f2e19c453b0b768837dde685\\transformed\\appcompat-1.7.1\\res\\values-v25\\values-v25.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\0d79b8aa6189ea442c8d271fc40b050b\\transformed\\appcompat-1.7.1\\res\\values-v25\\values-v25.xml",
                     "from": {
                         "startLines": "2,3,4,6",
                         "startColumns": "4,4,4,4",

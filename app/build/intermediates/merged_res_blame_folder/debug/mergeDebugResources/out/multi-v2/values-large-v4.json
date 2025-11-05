@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-51:/values-large-v4/values-large-v4.xml",
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-53:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\8cbd2649f2e19c453b0b768837dde685\\transformed\\appcompat-1.7.1\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\0d79b8aa6189ea442c8d271fc40b050b\\transformed\\appcompat-1.7.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\7d2f529477fe1d2df2b551f54313345f\\transformed\\material-1.12.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\01c12dc96fc622d51de6820c7e4578f0\\transformed\\material-1.12.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

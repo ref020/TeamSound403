@@ -39,6 +39,7 @@ import kotlinx.coroutines.withContext
 import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.AudioFormat
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import android.net.Uri
 import androidx.core.content.ContextCompat
@@ -46,6 +47,7 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.unit.max
 
 // Communication path constants
 const val START_RECOGNITION_PATH = "/start-recognition"
@@ -153,12 +155,12 @@ fun AudireWearApp() {
                 )
             ) { backStackEntry ->
                 ResultScreen(
+                    navController = navController, // <-- Pass the NavController
                     title = backStackEntry.arguments?.getString("title") ?: "",
-                    artist = backStackEntry.arguments?.getString("artist") ?: "",
-                    onOpenOnPhone = {
-                    }
+                    artist = backStackEntry.arguments?.getString("artist") ?: ""
                 )
             }
+
         }
     }
 }
@@ -220,26 +222,55 @@ fun RecognitionScreen(
         if (isLoading) {
             WaveAnimation(waveColor = MaterialTheme.colors.primary)
         } else {
-            Button(
-                onClick = {
-                    if (hasPermission) {
-                        // *** FIX: Call the lambda to change the state ***
-                        onIsLoadingChange(true)
-                        // Then, start the recording process.
-                        audioRecorder.startRecording { audioData ->
-                            // The onStartRecognition lambda now only handles sending the data.
-                            onStartRecognition(audioData)
-                        }
-                    } else {
-                        permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-                    }
-                },
-                modifier = Modifier.size(ButtonDefaults.LargeButtonSize)
+            // --- Wrap buttons in a Column for vertical arrangement ---
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_mic_24),
-                    contentDescription = "Start Recognition"
-                )
+                // --- Main Recognition Button ---
+                Button(
+                    onClick = {
+                        if (hasPermission) {
+                            onIsLoadingChange(true)
+                            audioRecorder.startRecording { audioData ->
+                                onStartRecognition(audioData)
+                            }
+                        } else {
+                            permissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                        }
+                    },
+                    modifier = Modifier.size(ButtonDefaults.LargeButtonSize)
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.baseline_mic_24),
+                        contentDescription = "Start Recognition"
+                    )
+                }
+
+                // --- ADD THE SPACER HERE ---
+                Spacer(Modifier.height(10.dp))
+
+                // --- Ping Test Button ---
+                Button(
+                    onClick = {
+                        Log.d("WearApp", "Ping button clicked. Sending message to phone...")
+                        Wearable.getNodeClient(context).connectedNodes.addOnSuccessListener { nodes ->
+                            nodes.firstOrNull()?.let { node ->
+                                Wearable.getMessageClient(context).sendMessage(
+                                    node.id,
+                                    "/ping-test",
+                                    "PING".toByteArray()
+                                ).apply {
+                                    addOnSuccessListener { Log.d("WearApp", "Ping message sent successfully.") }
+                                    addOnFailureListener { e -> Log.e("WearApp", "Ping message failed.", e) }
+                                }
+                            } ?: Log.e("WearApp", "No connected node to ping.")
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
+                ) {
+                    Text("Ping Test")
+                }
             }
         }
     }
@@ -248,7 +279,10 @@ fun RecognitionScreen(
 
 // --- Composable for the Result Screen ---
 @Composable
-fun ResultScreen(title: String, artist: String, onOpenOnPhone: () -> Unit) {
+fun ResultScreen(navController: NavHostController, title: String, artist: String) {
+    val isSongFound = title != SONG_NOT_FOUND_TITLE
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -256,19 +290,47 @@ fun ResultScreen(title: String, artist: String, onOpenOnPhone: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = title, textAlign = TextAlign.Center)
-        Text(text = artist, style = MaterialTheme.typography.caption2, textAlign = TextAlign.Center)
-        Spacer(Modifier.height(12.dp))
-        Button(
-            onClick = onOpenOnPhone
-        ) {
-            Icon(
-                imageVector = Icons.Default.PhoneAndroid,
-                contentDescription = "Open on phone"
-            )
+        Text(text = title, textAlign = TextAlign.Center, style = MaterialTheme.typography.title3)
+        Spacer(Modifier.height(4.dp))
+        Text(text = artist, style = MaterialTheme.typography.body2, textAlign = TextAlign.Center)
+        Spacer(Modifier.height(16.dp))
+
+        if (isSongFound) {
+            // --- Song was found: Show "Open on phone" button ---
+            Button(
+                onClick = {
+                    // Find the connected device and send a message to open the app
+                    Wearable.getNodeClient(context).connectedNodes.addOnSuccessListener { nodes ->
+                        nodes.firstOrNull()?.id?.also { nodeId ->
+                            val data = "$title|$artist".toByteArray()
+                            Wearable.getMessageClient(context).sendMessage(nodeId, OPEN_ON_PHONE_PATH, data)
+                        }
+                    }
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PhoneAndroid,
+                    contentDescription = "Open on phone"
+                )
+            }
+        } else {
+            // --- Song not found: Show "Retry" button ---
+            Button(
+                onClick = {
+                    // Navigate back to the recognition screen
+                    navController.popBackStack(RECOGNITION_ROUTE, inclusive = false)
+                },
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_retry), // Assuming you have a retry icon
+                    contentDescription = "Retry"
+                )
+            }
         }
     }
 }
+
 
 // --- ADDED AUDIO RECORDER CLASS ---
 
@@ -296,10 +358,15 @@ class AudioRecorder(private val context: Context) {
 
         mediaRecorder?.apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4) // Using MPEG_4 container
+            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)    // AAC is a good compressed format
+            setAudioSamplingRate(SAMPLE_RATE)
+            setAudioEncodingBitRate(SAMPLE_RATE * CHANNEL_COUNT * 16) // Bitrate = Sample Rate * Channels * Bits per Sample
+            setAudioChannels(CHANNEL_COUNT)
+
+
             setOutputFile(outputFile?.absolutePath)
-            setMaxDuration(10_000) // 10 seconds
+            setMaxDuration(7_000) // Let's use 7 seconds to match the phone app's likely expectation
 
             setOnInfoListener { _, what, _ ->
                 if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
@@ -339,5 +406,14 @@ class AudioRecorder(private val context: Context) {
                 isRecording = false
             }
         }
+    }
+
+    companion object {
+        private const val SAMPLE_RATE = 16000
+        private const val CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO
+        private const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
+        private const val CHANNEL_COUNT = 1
+        private const val SAMPLE_WIDTH = 2
+
     }
 }

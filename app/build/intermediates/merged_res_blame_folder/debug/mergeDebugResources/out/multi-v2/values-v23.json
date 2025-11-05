@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-51:/values-v23/values-v23.xml",
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-53:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\7d2f529477fe1d2df2b551f54313345f\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\01c12dc96fc622d51de6820c7e4578f0\\transformed\\material-1.12.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,5,9,13,16,19,22,25,28,32",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -23,26 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\remyr\\AndroidStudioProjects\\TeamSound403\\app\\src\\main\\res\\values-v23\\themes.xml",
-                    "from": {
-                        "startLines": "1,8,14",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "64,466,837",
-                        "endLines": "6,12,14",
-                        "endColumns": "12,12,60",
-                        "endOffsets": "458,829,893"
-                    },
-                    "to": {
-                        "startLines": "6,12,64",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "487,881,4140",
-                        "endLines": "11,16,64",
-                        "endColumns": "12,12,59",
-                        "endOffsets": "876,1240,4195"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\8cbd2649f2e19c453b0b768837dde685\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\0d79b8aa6189ea442c8d271fc40b050b\\transformed\\appcompat-1.7.1\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -61,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\remyr\\.gradle\\caches\\8.13\\transforms\\09fbb7d96e7904b4399c8062acba5a30\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\rayro\\.gradle\\caches\\8.13\\transforms\\cdb388f0a1b148474cb5219bf5bf1226\\transformed\\cardview-1.0.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -77,6 +58,25 @@
                         "endLines": "63",
                         "endColumns": "12",
                         "endOffsets": "4135"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\rayro\\StudioProjects\\TeamSound403\\app\\src\\main\\res\\values-v23\\themes.xml",
+                    "from": {
+                        "startLines": "1,8,14",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "64,466,837",
+                        "endLines": "6,12,14",
+                        "endColumns": "12,12,60",
+                        "endOffsets": "458,829,893"
+                    },
+                    "to": {
+                        "startLines": "6,12,64",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "487,881,4140",
+                        "endLines": "11,16,64",
+                        "endColumns": "12,12,59",
+                        "endOffsets": "876,1240,4195"
                     }
                 }
             ]

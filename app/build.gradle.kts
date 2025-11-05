@@ -64,6 +64,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:3.0.6")
     wearApp(project(":wear"))
     implementation("androidx.core:core-ktx:1.16.0")
     implementation("androidx.appcompat:appcompat:1.7.1")

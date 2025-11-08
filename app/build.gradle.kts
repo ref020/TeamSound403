@@ -101,6 +101,8 @@ dependencies {
     implementation("com.spotify.android:auth:2.1.0")
     implementation("org.json:json:20230227")
 
+    implementation("androidx.security:security-crypto:1.1.0-alpha03")
+
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")

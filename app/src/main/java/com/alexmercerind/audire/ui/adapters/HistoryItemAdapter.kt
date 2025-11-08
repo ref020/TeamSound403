@@ -15,6 +15,11 @@ import com.alexmercerind.audire.models.HistoryItem
 import com.alexmercerind.audire.ui.HistoryViewModel
 import com.alexmercerind.audire.ui.MusicActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import android.content.Context
+import com.alexmercerind.audire.api.Spotify.SpotifyAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HistoryItemAdapter(
     var items: List<HistoryItem>,
@@ -72,10 +77,16 @@ class HistoryItemAdapter(
             unlikedImageView.visibility = if (!items[position].liked) View.VISIBLE else View.GONE
 
             likeFrameLayout.setOnClickListener {
-                if (items[position].liked) {
-                    historyViewModel.unlike(items[position])
-                } else {
-                    historyViewModel.like(items[position])
+                // Launch a coroutine because getCurrentUserProfile is suspend
+                CoroutineScope(Dispatchers.Main).launch {
+                    val userProfile = SpotifyAuth.getCurrentUserProfile(context)
+                    val userId = userProfile?.getString("id") ?: return@launch
+
+                    if (items[position].liked) {
+                        historyViewModel.unlike(items[position], context, userId)
+                    } else {
+                        historyViewModel.like(items[position], context, userId)
+                    }
                 }
             }
         }

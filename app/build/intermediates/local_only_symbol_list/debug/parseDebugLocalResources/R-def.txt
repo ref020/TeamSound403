@@ -5,6 +5,7 @@ color ic_launcher_background
 color image_view_gradient_shade
 color transparent
 color white
+drawable baseline_account_circle_24
 drawable baseline_album_24
 drawable baseline_arrow_back_24
 drawable baseline_calendar_today_24
@@ -75,6 +76,7 @@ id likeFrameLayout
 id likedFragment
 id likedImageView
 id linksFlow
+id loginButton
 id lyricsBodyTextView
 id lyricsScrollView
 id lyricsTitleTextView
@@ -99,9 +101,11 @@ id settingsScrollView
 id shareMaterialButton
 id sortDropdownLayout
 id sortDropdownMenu
+id spotifyLoginTitle
 id spotifyMaterialButton
 id statusBarGradientView
 id stopButton
+id switchAccountButton
 id textView
 id titleTextView
 id toolbar2
@@ -114,6 +118,7 @@ layout activity_about
 layout activity_main
 layout activity_music
 layout activity_settings
+layout activity_spotify_login
 layout dropdown_menu
 layout fragment_history
 layout fragment_identify

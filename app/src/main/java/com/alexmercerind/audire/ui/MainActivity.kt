@@ -20,6 +20,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (intent?.getBooleanExtra("from_widget", false) == true) {
+            // Navigate to IdentifyFragment (or wherever IdentifyViewModel lives)
+            supportFragmentManager.setFragmentResult("widget_identify", Bundle())
+        }
+
         enableEdgeToEdge()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false

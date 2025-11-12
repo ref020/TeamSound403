@@ -45,6 +45,7 @@ class IdentifyFragment : Fragment() {
     private lateinit var visibilityWaveViewObjectAnimator: ObjectAnimator
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentIdentifyBinding.inflate(inflater, container, false)

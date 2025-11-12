@@ -33,10 +33,28 @@ public final class FragmentHistoryBinding implements ViewBinding {
   public final LinearLayout dropdownContainer;
 
   @NonNull
+  public final TextInputLayout filterAlbumDropdownLayout;
+
+  @NonNull
+  public final AutoCompleteTextView filterAlbumDropdownMenu;
+
+  @NonNull
+  public final TextInputLayout filterArtistDropdownLayout;
+
+  @NonNull
+  public final AutoCompleteTextView filterArtistDropdownMenu;
+
+  @NonNull
   public final TextInputLayout filterDropdownLayout;
 
   @NonNull
   public final AutoCompleteTextView filterDropdownMenu;
+
+  @NonNull
+  public final TextInputLayout filterYearDropdownLayout;
+
+  @NonNull
+  public final AutoCompleteTextView filterYearDropdownMenu;
 
   @NonNull
   public final LinearLayout historyLinearLayout;
@@ -67,17 +85,30 @@ public final class FragmentHistoryBinding implements ViewBinding {
 
   private FragmentHistoryBinding(@NonNull CoordinatorLayout rootView,
       @NonNull AppBarLayout appBarLayout, @NonNull LinearLayout dropdownContainer,
+      @NonNull TextInputLayout filterAlbumDropdownLayout,
+      @NonNull AutoCompleteTextView filterAlbumDropdownMenu,
+      @NonNull TextInputLayout filterArtistDropdownLayout,
+      @NonNull AutoCompleteTextView filterArtistDropdownMenu,
       @NonNull TextInputLayout filterDropdownLayout,
-      @NonNull AutoCompleteTextView filterDropdownMenu, @NonNull LinearLayout historyLinearLayout,
-      @NonNull RecyclerView historyRecyclerView, @NonNull MaterialToolbar primaryMaterialToolbar,
-      @NonNull LinearLayout searchLinearLayout, @NonNull TextInputEditText searchTextInputEditText,
+      @NonNull AutoCompleteTextView filterDropdownMenu,
+      @NonNull TextInputLayout filterYearDropdownLayout,
+      @NonNull AutoCompleteTextView filterYearDropdownMenu,
+      @NonNull LinearLayout historyLinearLayout, @NonNull RecyclerView historyRecyclerView,
+      @NonNull MaterialToolbar primaryMaterialToolbar, @NonNull LinearLayout searchLinearLayout,
+      @NonNull TextInputEditText searchTextInputEditText,
       @NonNull TextInputLayout searchTextInputLayout, @NonNull TextInputLayout sortDropdownLayout,
       @NonNull AutoCompleteTextView sortDropdownMenu, @NonNull Toolbar toolbar2) {
     this.rootView = rootView;
     this.appBarLayout = appBarLayout;
     this.dropdownContainer = dropdownContainer;
+    this.filterAlbumDropdownLayout = filterAlbumDropdownLayout;
+    this.filterAlbumDropdownMenu = filterAlbumDropdownMenu;
+    this.filterArtistDropdownLayout = filterArtistDropdownLayout;
+    this.filterArtistDropdownMenu = filterArtistDropdownMenu;
     this.filterDropdownLayout = filterDropdownLayout;
     this.filterDropdownMenu = filterDropdownMenu;
+    this.filterYearDropdownLayout = filterYearDropdownLayout;
+    this.filterYearDropdownMenu = filterYearDropdownMenu;
     this.historyLinearLayout = historyLinearLayout;
     this.historyRecyclerView = historyRecyclerView;
     this.primaryMaterialToolbar = primaryMaterialToolbar;
@@ -128,6 +159,30 @@ public final class FragmentHistoryBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.filterAlbumDropdownLayout;
+      TextInputLayout filterAlbumDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (filterAlbumDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.filterAlbumDropdownMenu;
+      AutoCompleteTextView filterAlbumDropdownMenu = ViewBindings.findChildViewById(rootView, id);
+      if (filterAlbumDropdownMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.filterArtistDropdownLayout;
+      TextInputLayout filterArtistDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (filterArtistDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.filterArtistDropdownMenu;
+      AutoCompleteTextView filterArtistDropdownMenu = ViewBindings.findChildViewById(rootView, id);
+      if (filterArtistDropdownMenu == null) {
+        break missingId;
+      }
+
       id = R.id.filterDropdownLayout;
       TextInputLayout filterDropdownLayout = ViewBindings.findChildViewById(rootView, id);
       if (filterDropdownLayout == null) {
@@ -137,6 +192,18 @@ public final class FragmentHistoryBinding implements ViewBinding {
       id = R.id.filterDropdownMenu;
       AutoCompleteTextView filterDropdownMenu = ViewBindings.findChildViewById(rootView, id);
       if (filterDropdownMenu == null) {
+        break missingId;
+      }
+
+      id = R.id.filterYearDropdownLayout;
+      TextInputLayout filterYearDropdownLayout = ViewBindings.findChildViewById(rootView, id);
+      if (filterYearDropdownLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.filterYearDropdownMenu;
+      AutoCompleteTextView filterYearDropdownMenu = ViewBindings.findChildViewById(rootView, id);
+      if (filterYearDropdownMenu == null) {
         break missingId;
       }
 
@@ -195,7 +262,9 @@ public final class FragmentHistoryBinding implements ViewBinding {
       }
 
       return new FragmentHistoryBinding((CoordinatorLayout) rootView, appBarLayout,
-          dropdownContainer, filterDropdownLayout, filterDropdownMenu, historyLinearLayout,
+          dropdownContainer, filterAlbumDropdownLayout, filterAlbumDropdownMenu,
+          filterArtistDropdownLayout, filterArtistDropdownMenu, filterDropdownLayout,
+          filterDropdownMenu, filterYearDropdownLayout, filterYearDropdownMenu, historyLinearLayout,
           historyRecyclerView, primaryMaterialToolbar, searchLinearLayout, searchTextInputEditText,
           searchTextInputLayout, sortDropdownLayout, sortDropdownMenu, toolbar2);
     }

@@ -140,7 +140,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/filterDropdownLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="203dp"
+            android:layout_width="205dp"
             android:layout_height="wrap_content"
             android:hint="@string/filter"
             android:paddingHorizontal="5dp"
@@ -149,11 +149,73 @@
 
             <AutoCompleteTextView
                 android:id="@+id/filterDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                app:dropDownBackgroundTint="#673AB7"></AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filterArtistDropdownLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/artist"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:visibility="gone">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/filterArtistDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 app:dropDownBackgroundTint="#673AB7">
+            </AutoCompleteTextView>
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filterAlbumDropdownLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/album"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:visibility="gone">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/filterAlbumDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                app:dropDownBackgroundTint="#673AB7">
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filterYearDropdownLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/year"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:visibility="gone">
+
+
+            <AutoCompleteTextView
+                android:id="@+id/filterYearDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                app:dropDownBackgroundTint="#673AB7">
             </AutoCompleteTextView>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -161,7 +223,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sortDropdownLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="203dp"
+            android:layout_width="205dp"
             android:layout_height="wrap_content"
             android:hint="@string/sort"
             android:paddingHorizontal="5dp"

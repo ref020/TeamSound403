@@ -1,10 +1,20 @@
 R_DEF: Internal format may change without notice
 local
+attr? appWidgetInnerRadius
+attr? appWidgetPadding
+attr? appWidgetRadius
 color black
 color ic_launcher_background
 color image_view_gradient_shade
+color light_blue_200
+color light_blue_50
+color light_blue_600
+color light_blue_900
 color transparent
 color white
+dimen widget_margin
+drawable app_widget_background
+drawable app_widget_inner_view_background
 drawable baseline_album_24
 drawable baseline_arrow_back_24
 drawable baseline_calendar_today_24
@@ -23,6 +33,7 @@ drawable baseline_search_24
 drawable baseline_settings_24
 drawable baseline_stop_24
 drawable download_24
+drawable example_appwidget_preview
 drawable github
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -58,8 +69,14 @@ id developerGitHubLinearLayout
 id developerXLinearLayout
 id dropdownContainer
 id fileFloatingActionButton
+id filterAlbumDropdownLayout
+id filterAlbumDropdownMenu
+id filterArtistDropdownLayout
+id filterArtistDropdownMenu
 id filterDropdownLayout
 id filterDropdownMenu
+id filterYearDropdownLayout
+id filterYearDropdownMenu
 id flexView
 id geniusSongsContainer
 id geniusSongsTitle
@@ -82,6 +99,7 @@ id materialToolbar
 id primaryMaterialToolbar
 id privacyLinearLayout
 id recordFloatingActionButton
+id refreshButton
 id search
 id searchLinearLayout
 id searchMaterialButton
@@ -103,6 +121,7 @@ id spotifyMaterialButton
 id statusBarGradientView
 id stopButton
 id textView
+id titleText
 id titleTextView
 id toolbar2
 id unlikedImageView
@@ -118,6 +137,7 @@ layout dropdown_menu
 layout fragment_history
 layout fragment_identify
 layout history_item
+layout widget
 menu bottom_navigation_view_menu
 menu history_material_toolbar_menu
 menu identify_material_toolbar_menu
@@ -126,8 +146,12 @@ mipmap ic_launcher_round
 navigation content_nav_graph
 string about
 string action_view_error
+string add_widget
 string album
 string app_name
+string app_widget_description
+string appwidget_text
+string artist
 string bottom_navigation_view_history
 string bottom_navigation_view_identify
 string cover_art
@@ -187,6 +211,12 @@ string youtube
 style Base.Theme.Audire
 style Base.Theme.Audire.MaterialAlertDialog
 style Theme.Audire
+style Theme.Audire.AppWidgetContainer
+style Theme.Audire.AppWidgetContainerParent
+style Widget.Audire.AppWidget.Container
+style Widget.Audire.AppWidget.InnerView
+styleable AppWidgetAttrs appWidgetPadding appWidgetInnerRadius appWidgetRadius
 xml backup_rules
 xml data_extraction_rules
 xml network_security_config
+xml widget_info

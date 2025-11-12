@@ -143,6 +143,9 @@ int attr animateNavigationIcon 0x7f030037
 int attr animateRelativeTo 0x7f030038
 int attr animationMode 0x7f030039
 int attr appBarLayoutStyle 0x7f03003a
+int attr appWidgetInnerRadius 0x7f030516
+int attr appWidgetPadding 0x7f030517
+int attr appWidgetRadius 0x7f030518
 int attr applyMotionScene 0x7f03003b
 int attr arcMode 0x7f03003c
 int attr argType 0x7f03003d
@@ -1491,6 +1494,10 @@ int color highlighted_text_material_dark 0x7f050062
 int color highlighted_text_material_light 0x7f050063
 int color ic_launcher_background 0x7f050064
 int color image_view_gradient_shade 0x7f050065
+int color light_blue_200 0x7f05030e
+int color light_blue_50 0x7f05030f
+int color light_blue_600 0x7f050310
+int color light_blue_900 0x7f050311
 int color m3_appbar_overlay_color 0x7f050066
 int color m3_assist_chip_icon_tint_color 0x7f050067
 int color m3_assist_chip_stroke_color 0x7f050068
@@ -2977,6 +2984,7 @@ int dimen tooltip_precise_anchor_threshold 0x7f060322
 int dimen tooltip_vertical_padding 0x7f060323
 int dimen tooltip_y_offset_non_touch 0x7f060324
 int dimen tooltip_y_offset_touch 0x7f060325
+int dimen widget_margin 0x7f060326
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f070028
 int drawable abc_action_bar_item_background_material 0x7f070029
 int drawable abc_btn_borderless_material 0x7f07002a
@@ -3056,6 +3064,8 @@ int drawable abc_textfield_search_activated_mtrl_alpha 0x7f070073
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f070074
 int drawable abc_textfield_search_material 0x7f070075
 int drawable abc_vector_test 0x7f070076
+int drawable app_widget_background 0x7f070101
+int drawable app_widget_inner_view_background 0x7f070102
 int drawable avd_hide_password 0x7f070077
 int drawable avd_show_password 0x7f070078
 int drawable baseline_album_24 0x7f070079
@@ -3089,6 +3099,7 @@ int drawable design_ic_visibility_off 0x7f070094
 int drawable design_password_eye 0x7f070095
 int drawable design_snackbar_background 0x7f070096
 int drawable download_24 0x7f070097
+int drawable example_appwidget_preview 0x7f070103
 int drawable github 0x7f070098
 int drawable ic_arrow_back_black_24 0x7f070099
 int drawable ic_call_answer 0x7f07009a
@@ -3415,8 +3426,14 @@ int id fill 0x7f0800d9
 int id fill_horizontal 0x7f0800da
 int id fill_vertical 0x7f0800db
 int id filled 0x7f0800dc
+int id filterAlbumDropdownLayout 0x7f080259
+int id filterAlbumDropdownMenu 0x7f08025a
+int id filterArtistDropdownLayout 0x7f080257
+int id filterArtistDropdownMenu 0x7f080258
 int id filterDropdownLayout 0x7f0800dd
 int id filterDropdownMenu 0x7f0800de
+int id filterYearDropdownLayout 0x7f08025b
+int id filterYearDropdownMenu 0x7f08025c
 int id fitCenter 0x7f0800df
 int id fitEnd 0x7f0800e0
 int id fitStart 0x7f0800e1
@@ -3615,6 +3632,7 @@ int id radio 0x7f0801a1
 int id ratio 0x7f0801a2
 int id recordFloatingActionButton 0x7f0801a3
 int id rectangles 0x7f0801a4
+int id refreshButton 0x7f080261
 int id report_drawn 0x7f0801a5
 int id reverseSawtooth 0x7f0801a6
 int id right 0x7f0801a7
@@ -3743,6 +3761,7 @@ int id textinput_suffix_text 0x7f080221
 int id time 0x7f080222
 int id title 0x7f080223
 int id titleDividerNoCustom 0x7f080224
+int id titleText 0x7f080260
 int id titleTextView 0x7f080225
 int id title_template 0x7f080226
 int id toggle 0x7f080227
@@ -3997,6 +4016,7 @@ int layout select_dialog_item_material 0x7f0b0073
 int layout select_dialog_multichoice_material 0x7f0b0074
 int layout select_dialog_singlechoice_material 0x7f0b0075
 int layout support_simple_spinner_dropdown_item 0x7f0b0076
+int layout widget 0x7f0b0077
 int menu bottom_navigation_view_menu 0x7f0d0000
 int menu history_material_toolbar_menu 0x7f0d0001
 int menu identify_material_toolbar_menu 0x7f0d0002
@@ -4034,10 +4054,14 @@ int string abc_shareactionprovider_share_with_application 0x7f120019
 int string abc_toolbar_collapse_description 0x7f12001a
 int string about 0x7f12001b
 int string action_view_error 0x7f12001c
+int string add_widget 0x7f1200eb
 int string album 0x7f12001d
 int string androidx_startup 0x7f12001e
 int string app_name 0x7f12001f
+int string app_widget_description 0x7f1200ec
 int string appbar_scrolling_view_behavior 0x7f120020
+int string appwidget_text 0x7f1200ed
+int string artist 0x7f1200ea
 int string bottom_navigation_view_history 0x7f120021
 int string bottom_navigation_view_identify 0x7f120022
 int string bottom_sheet_behavior 0x7f120023
@@ -4787,6 +4811,8 @@ int style Theme_AppCompat_Light_DialogWhenLarge 0x7f130220
 int style Theme_AppCompat_Light_NoActionBar 0x7f130221
 int style Theme_AppCompat_NoActionBar 0x7f130222
 int style Theme_Audire 0x7f130223
+int style Theme_Audire_AppWidgetContainer 0x7f130469
+int style Theme_Audire_AppWidgetContainerParent 0x7f13046a
 int style Theme_Design 0x7f130224
 int style Theme_Design_BottomSheetDialog 0x7f130225
 int style Theme_Design_Light 0x7f130226
@@ -5057,6 +5083,8 @@ int style Widget_AppCompat_TextView 0x7f13032e
 int style Widget_AppCompat_TextView_SpinnerItem 0x7f13032f
 int style Widget_AppCompat_Toolbar 0x7f130330
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x7f130331
+int style Widget_Audire_AppWidget_Container 0x7f13046b
+int style Widget_Audire_AppWidget_InnerView 0x7f13046c
 int style Widget_Compat_NotificationActionContainer 0x7f130332
 int style Widget_Compat_NotificationActionText 0x7f130333
 int style Widget_Design_AppBarLayout 0x7f130334
@@ -5637,6 +5665,10 @@ int styleable AppCompatTheme_windowFixedWidthMinor 123
 int styleable AppCompatTheme_windowMinWidthMajor 124
 int styleable AppCompatTheme_windowMinWidthMinor 125
 int styleable AppCompatTheme_windowNoTitle 126
+int[] styleable AppWidgetAttrs { 0x7f030516, 0x7f030517, 0x7f030518 }
+int styleable AppWidgetAttrs_appWidgetInnerRadius 0
+int styleable AppWidgetAttrs_appWidgetPadding 1
+int styleable AppWidgetAttrs_appWidgetRadius 2
 int[] styleable Badge { 0x7f030041, 0x7f03004e, 0x7f030058, 0x7f030059, 0x7f03005a, 0x7f03005b, 0x7f03005c, 0x7f03005e, 0x7f03005f, 0x7f030060, 0x7f030061, 0x7f030062, 0x7f030063, 0x7f030064, 0x7f030065, 0x7f030066, 0x7f030067, 0x7f030068, 0x7f030240, 0x7f030241, 0x7f030286, 0x7f030323, 0x7f030327, 0x7f030375, 0x7f030377, 0x7f0304f8, 0x7f0304f9 }
 int styleable Badge_autoAdjustToWithinGrandparentBounds 0
 int styleable Badge_backgroundColor 1
@@ -7542,3 +7574,4 @@ int xml backup_rules 0x7f150000
 int xml data_extraction_rules 0x7f150001
 int xml image_share_filepaths 0x7f150002
 int xml network_security_config 0x7f150003
+int xml widget_info 0x7f150004

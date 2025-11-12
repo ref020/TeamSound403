@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import android.util.Log
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
 import android.content.Context
+import kotlin.collections.emptyList
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
     val historyItems: StateFlow<List<HistoryItem>?>
@@ -27,59 +28,53 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     //var filterChoices1: List<String> = listOf()
     var filterType = MutableStateFlow<String?>(null)
     var filterChoice = MutableStateFlow<String?>(null)
+
+    var filters = MutableStateFlow<List<List<String?>>>(emptyList())
     var sortChoice = MutableStateFlow<String?>(null)
     var isAscending = MutableStateFlow<Boolean>(true)
     var query = MutableStateFlow<String>("")
-//        set(value) {
-//            // Avoid duplicate operation in Room.
-//            if (value == field) {
-//                return
-//            }
-//
-//            field = value
-//            viewModelScope.launch {
-//                mutex.withLock {
-//
-//                    _historyItems.emit(
-//                        when (value) {
-//                            // Search query == "" -> Show all HistoryItem(s)
-//                            "" -> when (value) {
-//                                    null -> getAll().first()
-//                                    else -> getAll().first()
-//                                }
-//                            // Search query != "" -> Show search HistoryItem(s)
-//                            else -> search(value.lowercase())
-//                        }
-//                    )
-//                }
-//            }
+
 
     fun filterSortSearch() {
         viewModelScope.launch {
             combine(
                 query,
-                filterType,
-                filterChoice,
+                filters,
                 sortChoice,
                 isAscending
-            ) { query, filterType, filterChoice, sortChoice, isAscending ->
-                FilterSortSearchChoices(query, filterType, filterChoice, sortChoice, isAscending)
+            ) { query, filters, sortChoice, isAscending ->
+                FilterSortSearchChoices(query, filters, sortChoice, isAscending)
             }.collect { choices ->
                 mutex.withLock {
                     val searchItems: List<HistoryItem> = when (choices.query) {
                         "" -> getAll().first()
                         else -> search(choices.query.lowercase())
                     }
-                    val filteredItems: List<HistoryItem> = when (choices.filterType) {
-                        "artist" -> searchItems.filter { it.artists == choices.filterChoice }
-                        "year" -> searchItems.filter { it.year == choices.filterChoice }
-                        else -> searchItems
+                    var filteredItems: List<HistoryItem> = emptyList()
+                    println(choices.filters)
+
+                    if (choices.filters.isEmpty()) {
+                        filteredItems = searchItems
+                        println("no filta")
+                    } else {
+                        println("unginggn")
+                        println(choices.filters)
+                        for (choice in choices.filters) {
+                            println(choice)
+                            when (choice[0]) {
+                                "Artist" -> filteredItems += (searchItems.filter { it.artists == choice[1] })
+                                "Album" -> filteredItems += (searchItems.filter { it.album == choice[1] })
+                                "Year" -> filteredItems += (searchItems.filter { it.year == choice[1] })
+                            }
+                        }
                     }
+
                     var sortedItems: List<HistoryItem> = when (choices.sortChoice) {
                         "Date Added" -> filteredItems.sortedBy { it.timestamp }
                         "Title" -> filteredItems.sortedBy { it.title }
                         "Year" -> filteredItems.sortedBy { it.year }
                         "Artist" -> filteredItems.sortedBy { it.artists }
+                        "Album" -> filteredItems.sortedBy { it.album }
                         else -> filteredItems
                     }
 
@@ -114,22 +109,39 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
     suspend fun getFilterChoices(): Flow<List<String>> {
         val filterArtistChoices = getFilterArtistChoices()
+        val filterAlbumChoices = getFilterAlbumChoices()
         val filterYearChoices = getFilterYearChoices()
-        return combine(MutableStateFlow("No Filter"), filterArtistChoices, filterYearChoices) { noFilter, artistChoices, yearChoices ->
-            (listOf(noFilter) + artistChoices + yearChoices).distinct()
+        return combine(MutableStateFlow("Clear Filters"), filterArtistChoices, filterAlbumChoices, filterYearChoices) { clearFilters, artistChoices, albumChoices, yearChoices ->
+            (listOf(clearFilters) + artistChoices.distinct() + albumChoices.distinct() + yearChoices.distinct())
         }
     }
 
     fun getFilterArtistChoices(): Flow<List<String>> {
-        return repository.getFilterArtistChoices()
+        val filterArtistChoices = repository.getFilterArtistChoices()
+        return combine(MutableStateFlow("Back"), filterArtistChoices) { goBack, artistChoices ->
+            (listOf(goBack) + artistChoices.distinct())
+        }
+    }
+
+    fun getFilterAlbumChoices(): Flow<List<String>> {
+        val filterAlbumChoices = repository.getFilterAlbumChoices()
+        return combine(MutableStateFlow("Back"), filterAlbumChoices) { goBack, albumChoices ->
+            (listOf(goBack) + albumChoices.distinct())
+        }
     }
     fun getFilterYearChoices(): Flow<List<String>> {
-        return repository.getFilterYearChoices()
+        val filterYearChoices = repository.getFilterYearChoices()
+        return combine(MutableStateFlow("Back"), filterYearChoices) { goBack, yearChoices ->
+            (listOf(goBack) + yearChoices.distinct())
+        }
     }
 
     fun insert(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.insert(historyItem) }
 
-    fun delete(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) { repository.delete(historyItem) }
+    fun delete(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(historyItem)
+        filterSortSearch()
+    }
 
     val prefs = getApplication<Application>().getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
     val savedPlaylistId = prefs.getString("playlist_id", null)
@@ -147,6 +159,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                 artistName = artistName,
                 albumName = albumName)
         }
+        filterSortSearch()
     }
     fun unlike(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
         repository.unlike(historyItem)
@@ -162,14 +175,14 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
                 artistName = artistName,
                 albumName = albumName)
         }
+        filterSortSearch()
     }
 }
 
 
 data class FilterSortSearchChoices(
     var query: String,
-    var filterType: String?,
-    var filterChoice: String?,
+    var filters: List<List<String?>>,
     var sortChoice: String?,
     val isAscending: Boolean
 )

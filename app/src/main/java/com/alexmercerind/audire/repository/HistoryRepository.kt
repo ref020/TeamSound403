@@ -6,19 +6,26 @@ import com.alexmercerind.audire.db.HistoryItemDatabase
 import com.alexmercerind.audire.models.HistoryItem
 
 class HistoryRepository(private val application: Application) {
-    suspend fun insert(historyItem: HistoryItem) =
+    suspend fun insert(historyItem: HistoryItem) {
+        val existingCopies = search(historyItem.title)
+        for (copy in existingCopies) {
+            delete(copy)
+        }
         HistoryItemDatabase(application).historyItemDao().insert(historyItem)
+    }
 
     suspend fun delete(historyItem: HistoryItem) =
         HistoryItemDatabase(application).historyItemDao().delete(historyItem)
 
-    fun getAll() = HistoryItemDatabase(application).historyItemDao().getAll()
+    fun getAll() =
+        HistoryItemDatabase(application).historyItemDao().getAll()
 
     suspend fun search(term: String) =
         HistoryItemDatabase(application).historyItemDao().search(term)
 
     suspend fun like(historyItem: HistoryItem) =
         HistoryItemDatabase(application).historyItemDao().like(historyItem.id!!)
+
 
     suspend fun unlike(historyItem: HistoryItem) =
         HistoryItemDatabase(application).historyItemDao().unlike(historyItem.id!!)
@@ -29,5 +36,7 @@ class HistoryRepository(private val application: Application) {
     fun getFilterYearChoices() =
         HistoryItemDatabase(application).historyItemDao().getFilterYearChoices()
 
+    fun getFilterAlbumChoices() =
+        HistoryItemDatabase(application).historyItemDao().getFilterAlbumChoices()
 }
 

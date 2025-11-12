@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.alexmercerind.audire.app-mergeDebugResources-52:/values-night-v31/values-night-v31.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\jonah\\AndroidStudioProjects\\TeamSound403\\app\\src\\main\\res\\values-night-v31\\themes.xml",
+                    "from": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "166",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "474"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "363"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -9,6 +9,7 @@ import androidx.room.RawQuery
 import androidx.sqlite.db.SupportSQLiteQuery
 import com.alexmercerind.audire.models.HistoryItem
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.toList
 
 @Dao
 interface HistoryItemDao {
@@ -21,7 +22,7 @@ interface HistoryItemDao {
     @Query("SELECT * FROM history_item ORDER BY timestamp DESC")
     fun getAll(): Flow<List<HistoryItem>>
 
-    @Query("SELECT * FROM history_item WHERE LOWER(title) LIKE '%' || :term || '%' ORDER BY timestamp DESC")
+    @Query("SELECT * FROM history_item WHERE LOWER(title) LIKE '%' || :term || '%' OR LOWER(artists) LIKE '%' || :term || '%' ORDER BY timestamp DESC")
     suspend fun search(term: String): List<HistoryItem>
 
     @Query("UPDATE history_item SET liked = 1 WHERE id = :id")
@@ -35,4 +36,7 @@ interface HistoryItemDao {
 
     @Query("SELECT DISTINCT year FROM history_item")
     fun getFilterYearChoices(): Flow<List<String>>
+
+    @Query("SELECT DISTINCT album FROM history_item")
+    fun getFilterAlbumChoices(): Flow<List<String>>
 }

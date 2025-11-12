@@ -58,5 +58,9 @@
     <string name="filter_and_sort">Filter and Sort</string>
     <string name="filter">Filter</string>
     <string name="sort">Sort</string>
-    <string name="share">Share</string> <!--NEW: for download button in music activity -->
+    <string name="share">Share</string>
+    <string name="artist">Artist\n</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string> <!--NEW: for download button in music activity -->
 </resources>

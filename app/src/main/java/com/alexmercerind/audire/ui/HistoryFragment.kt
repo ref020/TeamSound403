@@ -105,12 +105,46 @@ class HistoryFragment : Fragment() {
         val sortChoices = listOf("Artist: Ascending", "Artist: Descending", "Date Added: Ascending", "Date Added: Descending", "Title: Ascending", "Title: Descending", "Year Released: Ascending", "Year Released: Descending")
         var sortDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, sortChoices)
         var filterDropdownAdapter: ArrayAdapter<String?>? = null
+        var filterArtistDropdownAdapter: ArrayAdapter<String?>? = null
+        var filterAlbumDropdownAdapter: ArrayAdapter<String?>? = null
+        var filterYearDropdownAdapter: ArrayAdapter<String?>? = null
         lifecycleScope.launch {
-            historyViewModel.getFilterChoices().collect { choices ->
-                filterDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, choices)
-
+            historyViewModel.getFilterArtistChoices().collect { choices ->
+                println("bruh")
+                filterArtistDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, choices)
+            }
+            historyViewModel.getFilterAlbumChoices().collect { albumChoices ->
+                filterAlbumDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, albumChoices)
+            }
+            historyViewModel.getFilterYearChoices().collect { yearChoices ->
+                println("YearADaptizzy")
+                filterYearDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, yearChoices)
             }
         }
+        lifecycleScope.launch {
+            historyViewModel.getFilterAlbumChoices().collect { choices ->
+                filterAlbumDropdownAdapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    choices
+                )
+            }
+        }
+
+        lifecycleScope.launch {
+            historyViewModel.getFilterYearChoices().collect { choices ->
+                filterYearDropdownAdapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    choices
+                )
+            }
+        }
+
+        val filterChoices = listOf("Clear Filters", "Artist", "Album", "Year")
+        filterDropdownAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, filterChoices)
+        binding.filterDropdownMenu.setAdapter(filterDropdownAdapter)
+        binding.filterArtistDropdownMenu.setAdapter(filterArtistDropdownAdapter)
 
         binding.filterDropdownMenu.setOnClickListener {
             binding.filterDropdownMenu.setAdapter(filterDropdownAdapter)
@@ -118,24 +152,166 @@ class HistoryFragment : Fragment() {
         }
 
 
+
         binding.filterDropdownMenu.setOnItemClickListener { _, _, position, _ ->
-            lifecycleScope.launch {
-                historyViewModel.getFilterChoices().collect { choices ->
-                    val selected = choices[position]
-
-                    if (selected == "No Filter") {
-                        historyViewModel.filterType = MutableStateFlow(null)
-                    } else if (selected in historyViewModel.getFilterArtistChoices().first()) {
-                        historyViewModel.filterType = MutableStateFlow("artist")
-                        historyViewModel.filterChoice = MutableStateFlow(selected)
-                    } else {
-                        historyViewModel.filterType = MutableStateFlow("year")
-                        historyViewModel.filterChoice = MutableStateFlow(selected)
-                    }
-
+            if (position == 0) {
+                lifecycleScope.launch {
+                    historyViewModel.filters = MutableStateFlow(emptyList())
                     historyViewModel.filterSortSearch()
                 }
             }
+            lifecycleScope.launch {
+                historyViewModel.filterType = MutableStateFlow(filterChoices[position])
+            }
+            println(filterChoices[position])
+            when (filterChoices[position]) {
+                "Clear Filters" -> {
+
+                }
+                "Artist" -> {
+                    binding.filterArtistDropdownLayout.visibility = View.VISIBLE
+                    binding.filterDropdownLayout.visibility = View.GONE
+                    binding.filterAlbumDropdownLayout.visibility = View.GONE
+                    binding.filterYearDropdownLayout.visibility = View.GONE
+                    binding.filterArtistDropdownMenu.setAdapter(filterArtistDropdownAdapter)
+                    binding.filterArtistDropdownMenu.showDropDown()
+                }
+
+                "Album" -> {
+                    binding.filterAlbumDropdownLayout.visibility = View.VISIBLE
+                    binding.filterDropdownLayout.visibility = View.GONE
+                    binding.filterArtistDropdownLayout.visibility = View.GONE
+                    binding.filterYearDropdownLayout.visibility = View.GONE
+                    binding.filterAlbumDropdownMenu.setAdapter(filterAlbumDropdownAdapter)
+                    binding.filterAlbumDropdownMenu.showDropDown()
+                }
+
+                "Year" -> {
+                    println("filterYear")
+                    binding.filterYearDropdownLayout.visibility = View.VISIBLE
+                    binding.filterDropdownLayout.visibility = View.GONE
+                    binding.filterArtistDropdownLayout.visibility = View.GONE
+                    binding.filterAlbumDropdownLayout.visibility = View.GONE
+                    binding.filterYearDropdownMenu.setAdapter(filterYearDropdownAdapter)
+                    binding.filterYearDropdownMenu.showDropDown()
+                }
+
+
+            }
+//            lifecycleScope.launch {
+//                historyViewModel.getFilterChoices().collect { choices ->
+//                    val selected = choices[position]
+//
+//                    if (selected == "Clear Filters") {
+//                        historyViewModel.filterType = MutableStateFlow(null)
+//                    } else if (selected in historyViewModel.getFilterArtistChoices().first()) {
+//                        historyViewModel.filterType = MutableStateFlow("artist")
+//                        historyViewModel.filterChoice = MutableStateFlow(selected)
+//                    } else {
+//                        historyViewModel.filterType = MutableStateFlow("year")
+//                        historyViewModel.filterChoice = MutableStateFlow(selected)
+//                    }
+//
+//                    historyViewModel.filterSortSearch()
+//                }
+//            }
+        }
+
+        binding.filterArtistDropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            // if back not selected
+            println("position" + position)
+            if (position != 0) {
+                lifecycleScope.launch {
+                    historyViewModel.getFilterArtistChoices().collect { choices ->
+                        val choiceFlow: MutableStateFlow<List<String?>> =
+                            MutableStateFlow(listOf("Artist", choices[position]))
+                        if (choiceFlow.value in historyViewModel.filters.value) {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                remove(choiceFlow.value)
+                            }
+                        } else {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                add(choiceFlow.value)
+                            }
+                            println(historyViewModel.filters.value)
+                        }
+                        print("bruhf")
+                        println(historyViewModel.filters.value)
+                        var filtersString = historyViewModel.filters.value.map {it[1]}.toString()
+                        filtersString = filtersString.replace("[", "")
+                        filtersString = filtersString.replace("]", "")
+                        historyViewModel.filterSortSearch()
+                        binding.filterDropdownMenu.setText(filtersString, false)
+
+                    }
+                }
+            }
+            binding.filterArtistDropdownLayout.visibility = View.GONE
+            binding.filterDropdownLayout.visibility = View.VISIBLE
+            binding.filterDropdownMenu.showDropDown()
+        }
+
+        binding.filterAlbumDropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            // if back not selected
+            println("position" + position)
+            if (position != 0) {
+                lifecycleScope.launch {
+                    historyViewModel.getFilterAlbumChoices().collect { choices ->
+                        val choiceFlow: MutableStateFlow<List<String?>> =
+                            MutableStateFlow(listOf("Album", choices[position]))
+                        if (choiceFlow.value in historyViewModel.filters.value) {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                remove(choiceFlow.value)
+                            }
+                        } else {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                add(choiceFlow.value)
+                            }
+                            println(historyViewModel.filters.value)
+                        }
+                        var filtersString = historyViewModel.filters.value.map {it[1]}.toString()
+                        filtersString = filtersString.replace("[", "")
+                        filtersString = filtersString.replace("]", "")
+                        historyViewModel.filterSortSearch()
+                        binding.filterDropdownMenu.setText(filtersString, false)
+
+                    }
+                }
+            }
+            binding.filterAlbumDropdownLayout.visibility = View.GONE
+            binding.filterDropdownLayout.visibility = View.VISIBLE
+            binding.filterDropdownMenu.showDropDown()
+        }
+
+        binding.filterYearDropdownMenu.setOnItemClickListener { _, _, position, _ ->
+            // if back not selected
+            if (position != 0) {
+                lifecycleScope.launch {
+                    historyViewModel.getFilterYearChoices().collect { choices ->
+                        val choiceFlow: MutableStateFlow<List<String?>> =
+                            MutableStateFlow(listOf("Year", choices[position]))
+                        println(choiceFlow)
+                        if (choiceFlow.value in historyViewModel.filters.value) {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                remove(choiceFlow.value)
+                            }
+                        } else {
+                            historyViewModel.filters.value = historyViewModel.filters.value.toMutableList().apply {
+                                add(choiceFlow.value)
+                            }
+                        }
+                        var filtersString = historyViewModel.filters.value.map {it[1]}.toString()
+                        filtersString = filtersString.replace("[", "")
+                        filtersString = filtersString.replace("]", "")
+                        historyViewModel.filterSortSearch()
+                        binding.filterDropdownMenu.setText(filtersString, false)
+
+                    }
+                }
+            }
+            binding.filterYearDropdownLayout.visibility = View.GONE
+            binding.filterDropdownLayout.visibility = View.VISIBLE
+            binding.filterDropdownMenu.showDropDown()
         }
 
         binding.sortDropdownMenu.setOnClickListener {
@@ -186,8 +362,7 @@ class HistoryFragment : Fragment() {
             }
             true
         }
-
-        return binding.root
+            return binding.root
     }
 
     override fun onStart() {

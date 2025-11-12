@@ -19,7 +19,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import android.util.Log
 import com.alexmercerind.audire.utils.FileConverter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.newCoroutineContext
+import androidx.core.content.edit
 
 class IdentifyViewModel : ViewModel() {
     val error get() = _error.asSharedFlow()
@@ -79,10 +83,6 @@ class IdentifyViewModel : ViewModel() {
         audioRecorder.stop()
     }
 
-    init {
-
-
-    }
 
     fun fileUploadIdentify(context: Context?, fileUri: Uri) {
             println("file uload")
@@ -118,6 +118,8 @@ class IdentifyViewModel : ViewModel() {
                 }
             }
     }
+
+
     fun fetchRelatedSongs(music: Music) {
         viewModelScope.launch {
 

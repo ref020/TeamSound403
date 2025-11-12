@@ -171,11 +171,13 @@ public class HistoryItemDao_Impl(
 
   public override suspend fun search(term: String): List<HistoryItem> {
     val _sql: String =
-        "SELECT * FROM history_item WHERE LOWER(title) LIKE '%' || ? || '%' ORDER BY timestamp DESC"
+        "SELECT * FROM history_item WHERE LOWER(title) LIKE '%' || ? || '%' OR LOWER(artists) LIKE '%' || ? || '%' ORDER BY timestamp DESC"
     return performSuspending(__db, true, false) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {
         var _argIndex: Int = 1
+        _stmt.bindText(_argIndex, term)
+        _argIndex = 2
         _stmt.bindText(_argIndex, term)
         val _columnIndexOfId: Int = getColumnIndexOrThrow(_stmt, "id")
         val _columnIndexOfTimestamp: Int = getColumnIndexOrThrow(_stmt, "timestamp")
@@ -263,6 +265,24 @@ public class HistoryItemDao_Impl(
 
   public override fun getFilterYearChoices(): Flow<List<String>> {
     val _sql: String = "SELECT DISTINCT year FROM history_item"
+    return createFlow(__db, false, arrayOf("history_item")) { _connection ->
+      val _stmt: SQLiteStatement = _connection.prepare(_sql)
+      try {
+        val _result: MutableList<String> = mutableListOf()
+        while (_stmt.step()) {
+          val _item: String
+          _item = _stmt.getText(0)
+          _result.add(_item)
+        }
+        _result
+      } finally {
+        _stmt.close()
+      }
+    }
+  }
+
+  public override fun getFilterAlbumChoices(): Flow<List<String>> {
+    val _sql: String = "SELECT DISTINCT album FROM history_item"
     return createFlow(__db, false, arrayOf("history_item")) { _connection ->
       val _stmt: SQLiteStatement = _connection.prepare(_sql)
       try {

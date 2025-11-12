@@ -67,7 +67,7 @@
 37-->[com.pierfrancescosoffritti.androidyoutubeplayer:core:13.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\e038cc0be95dcdf5e42cb8f79160e2fa\transformed\core-13.0.0\AndroidManifest.xml:8:22-76
 38
 39    <application
-39-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-64:19
+39-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-75:19
 40        android:name="com.alexmercerind.audire.Audire"
 40-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:11:9-31
 41        android:allowBackup="true"
@@ -85,217 +85,238 @@
 48        android:label="@string/app_name"
 48-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:16:9-41
 49        android:networkSecurityConfig="@xml/network_security_config"
-49-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:19:9-69
+49-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:17:9-69
 50        android:roundIcon="@mipmap/ic_launcher_round"
-50-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:17:9-54
+50-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:18:9-54
 51        android:supportsRtl="true"
-51-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:18:9-35
+51-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:19:9-35
 52        android:testOnly="true"
 53        android:theme="@style/Theme.Audire"
-53-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:21:9-44
+53-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:20:9-44
 54        android:usesCleartextTraffic="true" >
-54-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:20:9-44
-55        <activity
-55-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:23:9-25:40
-56            android:name="com.alexmercerind.audire.ui.SettingsActivity"
-56-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:24:13-48
-57            android:exported="false" />
+54-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:21:9-44
+55        <receiver
+55-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:23:9-33:20
+56            android:name="com.alexmercerind.audire.ui.Widget"
+56-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:24:13-38
+57            android:exported="false" >
 57-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:25:13-37
-58        <activity
-58-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:26:9-28:40
-59            android:name="com.alexmercerind.audire.ui.AboutActivity"
-59-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:13-45
-60            android:exported="false" />
-60-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:28:13-37
-61        <activity
-61-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:29:9-31:40
-62            android:name="com.alexmercerind.audire.ui.MusicActivity"
-62-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:30:13-45
-63            android:exported="false" />
-63-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:31:13-37
-64        <activity
-64-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:32:9-51:20
-65            android:name="com.alexmercerind.audire.ui.MainActivity"
-65-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:33:13-44
-66            android:exported="true"
-66-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:34:13-36
-67            android:windowSoftInputMode="adjustNothing" >
-67-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:35:13-56
-68            <intent-filter>
-68-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:36:13-40:29
-69                <action android:name="android.intent.action.MAIN" />
-69-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:17-69
-69-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:25-66
-70
-71                <category android:name="android.intent.category.LAUNCHER" />
-71-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:17-77
-71-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:27-74
-72            </intent-filter>
-73            <intent-filter>
-73-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-49:29
-74                <action android:name="android.intent.action.VIEW" />
-74-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:17-69
-74-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:25-66
-75
-76                <category android:name="android.intent.category.DEFAULT" />
-76-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:17-76
-76-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:27-73
-77                <category android:name="android.intent.category.BROWSABLE" />
-77-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:17-78
-77-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:27-75
-78
-79                <data
-80                    android:host="callback"
-80-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:21-55
-81                    android:scheme="audire" />
-81-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:21-59
-82            </intent-filter>
-83        </activity>
-84
-85        <service
-85-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:9-62:19
-86            android:name="com.alexmercerind.audire.services.FindMusicTileService"
-86-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:13-58
-87            android:exported="true"
-87-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:55:13-36
-88            android:icon="@drawable/baseline_graphic_eq_24"
-88-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:13-60
-89            android:label="@string/find_music_qs_tile"
-89-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:13-55
-90            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
-90-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:58:13-77
-91            <intent-filter>
-91-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:59:13-61:29
-92                <action android:name="android.service.quicksettings.action.QS_TILE" />
-92-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:17-87
-92-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:25-84
-93            </intent-filter>
-94        </service>
-95
-96        <provider
-96-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-97            android:name="androidx.startup.InitializationProvider"
-97-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-98            android:authorities="com.alexmercerind.audire.androidx-startup"
-98-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-99            android:exported="false" >
-99-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-100            <meta-data
-100-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-101                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-101-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-102                android:value="androidx.startup" />
-102-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-103            <meta-data
-103-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:29:13-31:52
-104                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-104-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:30:17-78
-105                android:value="androidx.startup" />
-105-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:31:17-49
-106            <meta-data
-106-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:16:13-18:52
-107                android:name="okhttp3.internal.platform.PlatformInitializer"
-107-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:17:17-77
-108                android:value="androidx.startup" />
-108-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:18:17-49
-109            <meta-data
-109-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-110                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-111                android:value="androidx.startup" />
-111-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-112        </provider>
-113
-114        <activity
-114-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:48:9-63:20
-115            android:name="com.spotify.sdk.android.auth.LoginActivity"
-115-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:49:13-70
-116            android:exported="true"
-116-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:50:13-36
-117            android:launchMode="singleTask"
-117-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:51:13-44
-118            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-118-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:52:13-72
-119            <intent-filter android:autoVerify="true" >
-119-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-49:29
-120                <action android:name="android.intent.action.VIEW" />
-120-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:17-69
-120-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:25-66
-121
-122                <category android:name="android.intent.category.DEFAULT" />
-122-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:17-76
-122-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:27-73
-123                <category android:name="android.intent.category.BROWSABLE" />
-123-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:17-78
-123-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:27-75
-124
-125                <data
-126                    android:host="callback"
-126-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:21-55
-127                    android:scheme="audire" />
-127-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:21-59
-128            </intent-filter>
-129        </activity>
-130
-131        <uses-library
-131-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
-132            android:name="androidx.window.extensions"
-132-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
-133            android:required="false" />
-133-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
-134        <uses-library
-134-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
-135            android:name="androidx.window.sidecar"
-135-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
-136            android:required="false" />
-136-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
-137
-138        <service
-138-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:24:9-28:63
-139            android:name="androidx.room.MultiInstanceInvalidationService"
-139-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:25:13-74
-140            android:directBootAware="true"
-140-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:26:13-43
-141            android:exported="false" />
-141-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:27:13-37
+58            <intent-filter>
+58-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:26:13-28:29
+59                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+59-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:17-84
+59-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:25-81
+60            </intent-filter>
+61
+62            <meta-data
+62-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:30:13-32:55
+63                android:name="android.appwidget.provider"
+63-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:31:17-58
+64                android:resource="@xml/widget_info" />
+64-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:32:17-52
+65        </receiver>
+66
+67        <activity
+67-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:35:9-37:40
+68            android:name="com.alexmercerind.audire.ui.SettingsActivity"
+68-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:36:13-48
+69            android:exported="false" />
+69-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:13-37
+70        <activity
+70-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:38:9-40:40
+71            android:name="com.alexmercerind.audire.ui.AboutActivity"
+71-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:13-45
+72            android:exported="false" />
+72-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:40:13-37
+73        <activity
+73-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:41:9-43:40
+74            android:name="com.alexmercerind.audire.ui.MusicActivity"
+74-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-45
+75            android:exported="false" />
+75-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:13-37
+76        <activity
+76-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:9-63:20
+77            android:name="com.alexmercerind.audire.ui.MainActivity"
+77-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:13-44
+78            android:exported="true"
+78-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:46:13-36
+79            android:windowSoftInputMode="adjustNothing" >
+79-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:13-56
+80            <intent-filter>
+80-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:13-52:29
+81                <action android:name="android.intent.action.MAIN" />
+81-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:49:17-69
+81-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:49:25-66
+82
+83                <category android:name="android.intent.category.LAUNCHER" />
+83-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:51:17-77
+83-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:51:27-74
+84            </intent-filter>
+85            <intent-filter>
+85-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:13-62:29
+86                <action android:name="android.intent.action.VIEW" />
+86-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:17-69
+86-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:25-66
+87
+88                <category android:name="android.intent.category.DEFAULT" />
+88-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:17-76
+88-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:27-73
+89                <category android:name="android.intent.category.BROWSABLE" />
+89-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:17-78
+89-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:27-75
+90
+91                <data
+92                    android:host="callback"
+92-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:21-55
+93                    android:scheme="audire" />
+93-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:61:21-59
+94            </intent-filter>
+95        </activity>
+96
+97        <service
+97-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:65:9-74:19
+98            android:name="com.alexmercerind.audire.services.FindMusicTileService"
+98-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:66:13-58
+99            android:exported="true"
+99-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:67:13-36
+100            android:icon="@drawable/baseline_graphic_eq_24"
+100-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:68:13-60
+101            android:label="@string/find_music_qs_tile"
+101-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:69:13-55
+102            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE" >
+102-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:70:13-77
+103            <intent-filter>
+103-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:71:13-73:29
+104                <action android:name="android.service.quicksettings.action.QS_TILE" />
+104-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:72:17-87
+104-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:72:25-84
+105            </intent-filter>
+106        </service>
+107
+108        <provider
+108-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+109            android:name="androidx.startup.InitializationProvider"
+109-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+110            android:authorities="com.alexmercerind.audire.androidx-startup"
+110-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+111            android:exported="false" >
+111-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+112            <meta-data
+112-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+113                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+113-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+114                android:value="androidx.startup" />
+114-->[androidx.emoji2:emoji2:1.3.0] C:\Users\jonah\.gradle\caches\8.13\transforms\9e0b7ae5204f7ae2bd1b908c349dc011\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+115            <meta-data
+115-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:29:13-31:52
+116                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+116-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:30:17-78
+117                android:value="androidx.startup" />
+117-->[androidx.lifecycle:lifecycle-process:2.9.4] C:\Users\jonah\.gradle\caches\8.13\transforms\c3ae61bf6b6b2d44356a0e4e1bff8703\transformed\lifecycle-process-2.9.4\AndroidManifest.xml:31:17-49
+118            <meta-data
+118-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:16:13-18:52
+119                android:name="okhttp3.internal.platform.PlatformInitializer"
+119-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:17:17-77
+120                android:value="androidx.startup" />
+120-->[com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:18:17-49
+121            <meta-data
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+122                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+123                android:value="androidx.startup" />
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+124        </provider>
+125
+126        <activity
+126-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:48:9-63:20
+127            android:name="com.spotify.sdk.android.auth.LoginActivity"
+127-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:49:13-70
+128            android:exported="true"
+128-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:50:13-36
+129            android:launchMode="singleTask"
+129-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:51:13-44
+130            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+130-->[com.spotify.android:auth:2.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\d0884f9d235b17c04931d9bcfefd3118\transformed\auth-2.1.0\AndroidManifest.xml:52:13-72
+131            <intent-filter android:autoVerify="true" >
+131-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:13-62:29
+132                <action android:name="android.intent.action.VIEW" />
+132-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:17-69
+132-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:25-66
+133
+134                <category android:name="android.intent.category.DEFAULT" />
+134-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:17-76
+134-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:27-73
+135                <category android:name="android.intent.category.BROWSABLE" />
+135-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:17-78
+135-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:27-75
+136
+137                <data
+138                    android:host="callback"
+138-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:21-55
+139                    android:scheme="audire" />
+139-->C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:61:21-59
+140            </intent-filter>
+141        </activity>
 142
-143        <receiver
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-144            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-145            android:directBootAware="false"
-145-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-146            android:enabled="true"
-146-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-147            android:exported="true"
-147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-148            android:permission="android.permission.DUMP" >
-148-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-149            <intent-filter>
-149-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-150                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-150-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-150-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-151            </intent-filter>
-152            <intent-filter>
-152-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-153                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-153-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-153-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-154            </intent-filter>
-155            <intent-filter>
-155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-156                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-156-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-156-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-157            </intent-filter>
-158            <intent-filter>
-158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-159                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-159-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-159-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-160            </intent-filter>
-161        </receiver>
-162    </application>
-163
-164</manifest>
+143        <uses-library
+143-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+144            android:name="androidx.window.extensions"
+144-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+145            android:required="false" />
+145-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+146        <uses-library
+146-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+147            android:name="androidx.window.sidecar"
+147-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+148            android:required="false" />
+148-->[androidx.window:window:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a22fe714ef1c53e554371fd6d15c65f5\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+149
+150        <service
+150-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:24:9-28:63
+151            android:name="androidx.room.MultiInstanceInvalidationService"
+151-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:25:13-74
+152            android:directBootAware="true"
+152-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:26:13-43
+153            android:exported="false" />
+153-->[androidx.room:room-runtime-android:2.7.2] C:\Users\jonah\.gradle\caches\8.13\transforms\59f4bee711450a2d00f9acbf3b433667\transformed\room-runtime-release\AndroidManifest.xml:27:13-37
+154
+155        <receiver
+155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+156            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+156-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+157            android:directBootAware="false"
+157-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+158            android:enabled="true"
+158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+159            android:exported="true"
+159-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+160            android:permission="android.permission.DUMP" >
+160-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+161            <intent-filter>
+161-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+162                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+162-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+162-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+163            </intent-filter>
+164            <intent-filter>
+164-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+165                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+165-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+165-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+166            </intent-filter>
+167            <intent-filter>
+167-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+168                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+168-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+168-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+169            </intent-filter>
+170            <intent-filter>
+170-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+171                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+171-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+171-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\jonah\.gradle\caches\8.13\transforms\cedfe692bb4d30ad72733ccebbabc07d\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+172            </intent-filter>
+173        </receiver>
+174    </application>
+175
+176</manifest>

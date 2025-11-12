@@ -16,12 +16,12 @@
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\baseline_clear_24.xml"
     },
     {
-        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable_baseline_favorite_24.xml.flat",
-        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\baseline_favorite_24.xml"
-    },
-    {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\layout_history_item.xml.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\layout\\history_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable_baseline_favorite_24.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\baseline_favorite_24.xml"
     },
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
@@ -42,6 +42,10 @@
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\layout_widget_layout.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\layout\\widget_layout.xml"
     },
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable_x.xml.flat",
@@ -78,6 +82,10 @@
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable_baseline_arrow_back_24.xml.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\baseline_arrow_back_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable-nodpi_example_appwidget_preview.png.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable-nodpi\\example_appwidget_preview.png"
     },
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable_baseline_label_24.xml.flat",
@@ -184,6 +192,10 @@
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\outline_person_24.xml"
     },
     {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\layout_widget.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\layout\\widget.xml"
+    },
+    {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
@@ -204,8 +216,16 @@
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable\\baseline_search_24.xml"
     },
     {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable-v21_app_widget_background.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable-v21\\app_widget_background.xml"
+    },
+    {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\xml_widget_info.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\xml\\widget_info.xml"
     },
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\layout_activity_settings.xml.flat",
@@ -226,6 +246,10 @@
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\layout_activity_music.xml.flat",
         "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\layout\\activity_music.xml"
+    },
+    {
+        "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\drawable-v21_app_widget_inner_view_background.xml.flat",
+        "source": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-main-56:\\drawable-v21\\app_widget_inner_view_background.xml"
     },
     {
         "merged": "C:\\Users\\jonah\\.gradle\\daemon\\8.13\\com.alexmercerind.audire.app-debug-54:\\mipmap-mdpi_ic_launcher_round.webp.flat",

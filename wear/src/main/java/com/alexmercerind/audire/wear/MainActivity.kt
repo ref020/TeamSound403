@@ -40,14 +40,17 @@ import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioFormat
+import android.media.AudioRecord
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import android.net.Uri
+import androidx.annotation.RequiresPermission
 import androidx.core.content.ContextCompat
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.max
+import java.io.ByteArrayOutputStream
 
 // Communication path constants
 const val START_RECOGNITION_PATH = "/start-recognition"
@@ -335,85 +338,62 @@ fun ResultScreen(navController: NavHostController, title: String, artist: String
 // --- ADDED AUDIO RECORDER CLASS ---
 
 class AudioRecorder(private val context: Context) {
-
-    private var mediaRecorder: MediaRecorder? = null
-    private var outputFile: File? = null
+    private var audioRecord: AudioRecord? = null
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     private var isRecording = false
 
+    @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun startRecording(onComplete: (ByteArray) -> Unit) {
-        if (isRecording) {
-            return
-        }
+        if (isRecording) return
         isRecording = true
 
-        mediaRecorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            MediaRecorder(context)
-        } else {
-            @Suppress("DEPRECATION")
-            MediaRecorder()
-        }
+        val bufferSize = AudioRecord.getMinBufferSize(
+            SAMPLE_RATE,
+            AudioFormat.CHANNEL_IN_MONO,
+            AudioFormat.ENCODING_PCM_16BIT
+        )
 
-        outputFile = File.createTempFile("audio_record", ".mp3", context.cacheDir)
+        audioRecord = AudioRecord(
+            MediaRecorder.AudioSource.MIC,
+            SAMPLE_RATE,
+            AudioFormat.CHANNEL_IN_MONO,
+            AudioFormat.ENCODING_PCM_16BIT,
+            bufferSize
+        )
 
-        mediaRecorder?.apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4) // Using MPEG_4 container
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)    // AAC is a good compressed format
-            setAudioSamplingRate(SAMPLE_RATE)
-            setAudioEncodingBitRate(SAMPLE_RATE * CHANNEL_COUNT * 16) // Bitrate = Sample Rate * Channels * Bits per Sample
-            setAudioChannels(CHANNEL_COUNT)
+        val audioBuffer = ByteArray(bufferSize)
+        val outputStream = ByteArrayOutputStream()
 
+        audioRecord?.startRecording()
 
-            setOutputFile(outputFile?.absolutePath)
-            setMaxDuration(7_000) // Let's use 7 seconds to match the phone app's likely expectation
-
-            setOnInfoListener { _, what, _ ->
-                if (what == MediaRecorder.MEDIA_RECORDER_INFO_MAX_DURATION_REACHED) {
-                    stopRecording(onComplete)
-                }
+        coroutineScope.launch {
+            val startTime = System.currentTimeMillis()
+            while (isRecording && System.currentTimeMillis() - startTime < MAX_DURATION_MS) {
+                val read = audioRecord?.read(audioBuffer, 0, audioBuffer.size) ?: 0
+                if (read > 0) outputStream.write(audioBuffer, 0, read)
             }
-
-            try {
-                prepare()
-                start()
-            } catch (e: IOException) {
-                isRecording = false
-            }
+            stopRecording(onComplete, outputStream.toByteArray())
         }
     }
 
-    private fun stopRecording(onComplete: (ByteArray) -> Unit) {
+    fun stopRecording(onComplete: (ByteArray) -> Unit, data: ByteArray? = null) {
         if (!isRecording) return
+        isRecording = false
 
-        mediaRecorder?.apply {
-            try {
-                stop()
-                release()
-            } catch (e: Exception) {
-                // Ignore exceptions on stop
-            }
+        audioRecord?.apply {
+            stop()
+            release()
         }
-        mediaRecorder = null
+        audioRecord = null
 
-        coroutineScope.launch {
-            val audioData = outputFile?.readBytes()
-            withContext(Dispatchers.Main) {
-                if (audioData != null) {
-                    onComplete(audioData)
-                }
-                outputFile?.delete()
-                isRecording = false
-            }
+        coroutineScope.launch(Dispatchers.Main) {
+            if (data != null) onComplete(data)
         }
     }
 
     companion object {
-        private const val SAMPLE_RATE = 16000
-        private const val CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO
-        private const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
-        private const val CHANNEL_COUNT = 1
-        private const val SAMPLE_WIDTH = 2
-
+        // Adjusted for <100 KB total
+        private const val SAMPLE_RATE = 8000        // 8 kHz
+        private const val MAX_DURATION_MS = 5000L   // 3 seco
     }
 }

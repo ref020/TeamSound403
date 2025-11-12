@@ -1,18 +1,18 @@
 -- Merging decision tree log ---
 data
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:59:17-61:62
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:59:17-61:62
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:46:17-48:58
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:46:17-48:58
 	android:host
 		INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:21-55
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:21-55
 	android:scheme
 		INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:61:21-59
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:21-59
 manifest
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-77:12
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-78:12
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-78:12
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-78:12
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:2:1-78:12
 MERGED from [androidx.databinding:viewbinding:8.12.0] C:\Users\jonah\.gradle\caches\8.13\transforms\627e17b3f6def50980bb3738c96c561e\transformed\viewbinding-8.12.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.3] C:\Users\jonah\.gradle\caches\8.13\transforms\c2b93d59a84c1136549908749698ec47\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.3] C:\Users\jonah\.gradle\caches\8.13\transforms\172bffc0eee6e9d92f6b91f58e15e0e1\transformed\navigation-common-release\AndroidManifest.xml:17:1-22:12
@@ -68,6 +68,7 @@ MERGED from [androidx.room:room-ktx:2.7.2] C:\Users\jonah\.gradle\caches\8.13\tr
 MERGED from [com.squareup.okhttp3:okhttp-android:5.1.0] C:\Users\jonah\.gradle\caches\8.13\transforms\a8945cc859995b15f794f931291d07db\transformed\okhttp-release\AndroidManifest.xml:2:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jonah\.gradle\caches\8.13\transforms\d3f4c8344d59a47cde26d7361c206359\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\117bb76538040e8cf4e3a623ed734a0f\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\jonah\.gradle\caches\8.13\transforms\b2713f2eaad649350d112ad1547c2f00\transformed\security-crypto-1.1.0-alpha03\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jonah\.gradle\caches\8.13\transforms\3571784184bb08741ff5b961bb0b8159\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.sqlite:sqlite-framework-android:2.5.1] C:\Users\jonah\.gradle\caches\8.13\transforms\4c5b63ca5efd870783d661553a15b417\transformed\sqlite-framework-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite-android:2.5.1] C:\Users\jonah\.gradle\caches\8.13\transforms\63f2b88553c6a1c9c15f4e1f7e5c29c5\transformed\sqlite-release\AndroidManifest.xml:17:1-22:12
@@ -115,8 +116,8 @@ ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-75:19
-INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-75:19
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-76:19
+INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:10:5-76:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\jonah\.gradle\caches\8.13\transforms\7d2f529477fe1d2df2b551f54313345f\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\jonah\.gradle\caches\8.13\transforms\7d2f529477fe1d2df2b551f54313345f\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.1] C:\Users\jonah\.gradle\caches\8.13\transforms\69f32ce31a2df131cda228c82c881c28\transformed\constraintlayout-2.2.1\AndroidManifest.xml:7:5-20
@@ -144,15 +145,15 @@ MERGED from [androidx.startup:startup-runtime:1.2.0] C:\Users\jonah\.gradle\cach
 	android:extractNativeLibs
 		INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml
 	android:roundIcon
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:18:9-54
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:17:9-54
 	android:icon
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:15:9-43
 	android:networkSecurityConfig
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:17:9-69
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:19:9-69
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.16.0] C:\Users\jonah\.gradle\caches\8.13\transforms\5e5c511ee061a17ff051ab81201901a4\transformed\core-1.16.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:19:9-35
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:18:9-35
 	android:label
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:16:9-41
 	android:fullBackupContent
@@ -162,99 +163,91 @@ MERGED from [androidx.startup:startup-runtime:1.2.0] C:\Users\jonah\.gradle\cach
 	android:allowBackup
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:20:9-44
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:21:9-44
 	android:dataExtractionRules
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:13:9-65
 	android:usesCleartextTraffic
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:21:9-44
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:20:9-44
 	android:name
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:11:9-31
-receiver#com.alexmercerind.audire.ui.Widget
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:23:9-33:20
+activity#com.alexmercerind.audire.ui.SettingsActivity
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:23:9-25:40
 	android:exported
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:25:13-37
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:24:13-38
-intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:26:13-28:29
-action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:17-84
-	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:25-81
-meta-data#android.appwidget.provider
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:30:13-32:55
-	android:resource
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:32:17-52
-	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:31:17-58
-activity#com.alexmercerind.audire.ui.SettingsActivity
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:35:9-37:40
-	android:exported
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:13-37
-	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:36:13-48
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:24:13-48
 activity#com.alexmercerind.audire.ui.AboutActivity
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:38:9-40:40
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:26:9-28:40
 	android:exported
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:13-45
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:27:13-45
 activity#com.alexmercerind.audire.ui.MusicActivity
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:41:9-43:40
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:29:9-31:40
 	android:exported
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:13-37
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:31:13-37
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-45
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:30:13-45
 activity#com.alexmercerind.audire.ui.MainActivity
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:9-63:20
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:32:9-51:20
 	android:windowSoftInputMode
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:47:13-56
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:35:13-56
 	android:exported
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:46:13-36
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:34:13-36
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:13-44
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:33:13-44
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:48:13-52:29
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:36:13-40:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:49:17-69
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:17-69
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:49:25-66
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:37:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:51:17-77
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:17-77
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:51:27-74
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:39:27-74
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:callback+data:scheme:audire
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:13-62:29
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:42:13-49:29
 action#android.intent.action.VIEW
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:17-69
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:17-69
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:25-66
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:43:25-66
 category#android.intent.category.DEFAULT
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:17-76
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:17-76
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:27-73
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:44:27-73
 category#android.intent.category.BROWSABLE
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:17-78
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:17-78
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:27-75
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:45:27-75
 service#com.alexmercerind.audire.services.FindMusicTileService
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:65:9-74:19
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:53:9-62:19
 	android:label
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:69:13-55
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:57:13-55
+	android:exported
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:55:13-36
+	android:permission
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:58:13-77
+	android:icon
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:56:13-60
+	android:name
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:54:13-58
+intent-filter#action:name:android.service.quicksettings.action.QS_TILE
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:59:13-61:29
+action#android.service.quicksettings.action.QS_TILE
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:17-87
+	android:name
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:60:25-84
+activity#com.alexmercerind.audire.ui.SpotifyLoginActivity
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:64:9-74:20
+	android:launchMode
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:66:13-43
 	android:exported
 		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:67:13-36
-	android:permission
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:70:13-77
-	android:icon
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:68:13-60
 	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:66:13-58
-intent-filter#action:name:android.service.quicksettings.action.QS_TILE
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:71:13-73:29
-action#android.service.quicksettings.action.QS_TILE
-ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:72:17-87
-	android:name
-		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:72:25-84
+		ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:65:13-52
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:spotify-auth+data:scheme:audire
+ADDED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml:68:13-73:29
 uses-sdk
 INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\jonah\AndroidStudioProjects\TeamSound403\app\src\main\AndroidManifest.xml
@@ -369,6 +362,8 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jonah\.
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\jonah\.gradle\caches\8.13\transforms\d3f4c8344d59a47cde26d7361c206359\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\117bb76538040e8cf4e3a623ed734a0f\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jonah\.gradle\caches\8.13\transforms\117bb76538040e8cf4e3a623ed734a0f\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\jonah\.gradle\caches\8.13\transforms\b2713f2eaad649350d112ad1547c2f00\transformed\security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha03] C:\Users\jonah\.gradle\caches\8.13\transforms\b2713f2eaad649350d112ad1547c2f00\transformed\security-crypto-1.1.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jonah\.gradle\caches\8.13\transforms\3571784184bb08741ff5b961bb0b8159\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jonah\.gradle\caches\8.13\transforms\3571784184bb08741ff5b961bb0b8159\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite-framework-android:2.5.1] C:\Users\jonah\.gradle\caches\8.13\transforms\4c5b63ca5efd870783d661553a15b417\transformed\sqlite-framework-release\AndroidManifest.xml:20:5-44

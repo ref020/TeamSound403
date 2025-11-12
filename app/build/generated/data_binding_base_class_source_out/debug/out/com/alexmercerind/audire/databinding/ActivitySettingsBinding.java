@@ -50,6 +50,9 @@ public final class ActivitySettingsBinding implements ViewBinding {
   @NonNull
   public final ScrollView settingsScrollView;
 
+  @NonNull
+  public final LinearLayout switchAccountButton;
+
   private ActivitySettingsBinding(@NonNull CoordinatorLayout rootView,
       @NonNull MaterialToolbar materialToolbar,
       @NonNull LinearLayout settingsAppearanceSystemColorSchemeLinearLayout,
@@ -59,7 +62,7 @@ public final class ActivitySettingsBinding implements ViewBinding {
       @NonNull TextView settingsAppearanceThemeSupportingText,
       @NonNull LinearLayout settingsBackupExportLinearLayout,
       @NonNull LinearLayout settingsBackupImportLinearLayout,
-      @NonNull ScrollView settingsScrollView) {
+      @NonNull ScrollView settingsScrollView, @NonNull LinearLayout switchAccountButton) {
     this.rootView = rootView;
     this.materialToolbar = materialToolbar;
     this.settingsAppearanceSystemColorSchemeLinearLayout = settingsAppearanceSystemColorSchemeLinearLayout;
@@ -70,6 +73,7 @@ public final class ActivitySettingsBinding implements ViewBinding {
     this.settingsBackupExportLinearLayout = settingsBackupExportLinearLayout;
     this.settingsBackupImportLinearLayout = settingsBackupImportLinearLayout;
     this.settingsScrollView = settingsScrollView;
+    this.switchAccountButton = switchAccountButton;
   }
 
   @Override
@@ -153,11 +157,18 @@ public final class ActivitySettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.switchAccountButton;
+      LinearLayout switchAccountButton = ViewBindings.findChildViewById(rootView, id);
+      if (switchAccountButton == null) {
+        break missingId;
+      }
+
       return new ActivitySettingsBinding((CoordinatorLayout) rootView, materialToolbar,
           settingsAppearanceSystemColorSchemeLinearLayout,
           settingsAppearanceSystemColorSchemeMaterialSwitch, settingsAppearanceThemeLinearLayout,
           settingsAppearanceThemePopupMenuAnchor, settingsAppearanceThemeSupportingText,
-          settingsBackupExportLinearLayout, settingsBackupImportLinearLayout, settingsScrollView);
+          settingsBackupExportLinearLayout, settingsBackupImportLinearLayout, settingsScrollView,
+          switchAccountButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

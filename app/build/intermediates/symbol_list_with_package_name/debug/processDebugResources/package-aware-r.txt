@@ -3069,6 +3069,7 @@ drawable app_widget_background
 drawable app_widget_inner_view_background
 drawable avd_hide_password
 drawable avd_show_password
+drawable baseline_account_circle_24
 drawable baseline_album_24
 drawable baseline_arrow_back_24
 drawable baseline_calendar_today_24
@@ -3086,6 +3087,7 @@ drawable baseline_music_note_24
 drawable baseline_search_24
 drawable baseline_settings_24
 drawable baseline_stop_24
+drawable box_background
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3505,6 +3507,7 @@ id linksFlow
 id listMode
 id list_item
 id locale
+id loginButton
 id ltr
 id lyricsBodyTextView
 id lyricsScrollView
@@ -3704,6 +3707,7 @@ id spacer
 id special_effects_controller_view_tag
 id spline
 id split_action_bar
+id spotifyLoginTitle
 id spotifyMaterialButton
 id spread
 id spread_inside
@@ -3726,6 +3730,7 @@ id stretch
 id submenuarrow
 id submit_area
 id supportScrollUp
+id switchAccountButton
 id tabMode
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
@@ -3930,6 +3935,7 @@ layout activity_about
 layout activity_main
 layout activity_music
 layout activity_settings
+layout activity_spotify_login
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout com_spotify_sdk_login_activity

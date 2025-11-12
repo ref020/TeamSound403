@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.Flow
 import android.util.Log
 import com.alexmercerind.audire.api.Spotify.SpotifyPlaylists
+import com.alexmercerind.audire.api.Spotify.SpotifyLikeSong
 import android.content.Context
 import kotlin.collections.emptyList
 
@@ -143,26 +144,38 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         filterSortSearch()
     }
 
-    val prefs = getApplication<Application>().getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
-    val savedPlaylistId = prefs.getString("playlist_id", null)
-    fun like(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
+    fun like(historyItem: HistoryItem, context: Context, userId: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.like(historyItem)
+
+        val prefs = context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
+        val savedPlaylistId = prefs.getString("playlist_id_$userId", null)
+
         val songName = historyItem.title
         val artistName = historyItem.artists
         val albumName = historyItem.album
+
         Log.d("LikedSong", "Song Name = $songName Album Name = $albumName")
         Log.d("LikedSong", "Playlist = $savedPlaylistId")
+
         savedPlaylistId?.let { playlistId ->
             SpotifyPlaylists.addTrackToPlaylist(
+                context = context,
                 playlistId = playlistId,
                 songTitle = songName,
                 artistName = artistName,
-                albumName = albumName)
+                albumName = albumName
+            )
         }
+
+        SpotifyLikeSong.likeSong(context = context, songName = songName, artistName = artistName, albumName = albumName)
         filterSortSearch()
     }
-    fun unlike(historyItem: HistoryItem) = viewModelScope.launch(Dispatchers.IO) {
+    fun unlike(historyItem: HistoryItem, context: Context, userId: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.unlike(historyItem)
+
+        val prefs = context.getSharedPreferences("spotify_prefs", Context.MODE_PRIVATE)
+        val savedPlaylistId = prefs.getString("playlist_id_$userId", null)
+
         val songName = historyItem.title
         val artistName = historyItem.artists
         val albumName = historyItem.album
@@ -170,12 +183,14 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         Log.d("UnlikedSong", "Playlist = $savedPlaylistId")
         savedPlaylistId?.let { playlistId ->
             SpotifyPlaylists.removeTrackFromPlaylist(
+                context = context,
                 playlistId = playlistId,
                 songTitle = songName,
                 artistName = artistName,
                 albumName = albumName)
         }
         filterSortSearch()
+        SpotifyLikeSong.unlikeSong(context = context, songName = songName, artistName = artistName, albumName = albumName)
     }
 }
 

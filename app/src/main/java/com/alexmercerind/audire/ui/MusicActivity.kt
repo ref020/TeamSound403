@@ -118,6 +118,7 @@ class MusicActivity : AppCompatActivity() {
                                 lifecycleScope.launch {
                                     try {
                                         val trackUri = SpotifyPlaylists.searchTrackUri(
+                                            this@MusicActivity,
                                             song,
                                             music.artists,
                                             music.album
@@ -226,7 +227,7 @@ class MusicActivity : AppCompatActivity() {
         binding.spotifyMaterialButton.setOnClickListener {
             lifecycleScope.launch {
                 val trackUri =
-                    SpotifyPlaylists.searchTrackUri(music.title, music.artists, music.album)
+                    SpotifyPlaylists.searchTrackUri(this@MusicActivity,music.title, music.artists, music.album)
 
                 trackUri?.let {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it)).apply {
@@ -256,7 +257,7 @@ class MusicActivity : AppCompatActivity() {
         binding.shareMaterialButton.setOnClickListener {
             lifecycleScope.launch {
                 val trackUri =
-                    SpotifyPlaylists.searchTrackUri(music.title, music.artists, music.album)
+                    SpotifyPlaylists.searchTrackUri(this@MusicActivity, music.title, music.artists, music.album)
                 if (trackUri != null) {
                     val trackUrl =
                         "https://open.spotify.com/track/${trackUri.removePrefix("spotify:track:")}"

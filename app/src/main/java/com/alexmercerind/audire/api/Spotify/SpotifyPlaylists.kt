@@ -11,6 +11,7 @@ import java.io.IOException
 import android.util.Log
 import org.json.JSONArray
 import java.net.URLEncoder
+import android.content.Context
 
 object SpotifyPlaylists {
     private const val API_BASE_URL = "https://api.spotify.com/v1"
@@ -18,8 +19,8 @@ object SpotifyPlaylists {
     private val client = OkHttpClient()
 
 
-    suspend fun doesPlaylistExist(playlistId: String): Boolean = withContext(Dispatchers.IO) {
-        val playlists = getUserPlaylists()
+    suspend fun doesPlaylistExist(context: Context, playlistId: String): Boolean = withContext(Dispatchers.IO) {
+        val playlists = getUserPlaylists(context)
         playlists.forEach {
             Log.d("SpotifyTest", "User playlist: ${it.getString("name")} (${it.getString("id")}")
         }
@@ -27,8 +28,8 @@ object SpotifyPlaylists {
         Log.d("SpotifyTest", "Playlist $playlistId found: $found")
         found
     }
-    suspend fun getUserPlaylists(limit: Int = 50): List<JSONObject> = withContext(Dispatchers.IO) {
-        val accessToken = SpotifyAuth.getAccessToken()
+    suspend fun getUserPlaylists(context: Context, limit: Int = 50): List<JSONObject> = withContext(Dispatchers.IO) {
+        val accessToken = SpotifyAuth.ensureValidAccessToken(context)
         var playlists = mutableListOf<JSONObject>()
         var offset = 0
 
@@ -50,14 +51,18 @@ object SpotifyPlaylists {
                 offset += limit
             }
         }
+        Log.d("Playlists Testing", "Getting playlists is working")
         playlists
     }
 
-    suspend fun createPlaylist(playlistName: String, isPublic: Boolean = true): JSONObject? = withContext(Dispatchers.IO) {
-        val userProfile = SpotifyAuth.getCurrentUserProfile() ?: return@withContext null
-        val userId = userProfile.getString("id")
-        val accessToken = SpotifyAuth.getAccessToken()
+    suspend fun createPlaylist(context: Context, playlistName: String, isPublic: Boolean = true): JSONObject? = withContext(Dispatchers.IO) {
+        Log.d("Playlists Testing", "Creating playlist was called properly")
 
+        val userProfile = SpotifyAuth.getCurrentUserProfile(context) ?: return@withContext null
+        val userId = userProfile.getString("id")
+        val accessToken = SpotifyAuth.ensureValidAccessToken(context)
+
+        Log.d("Playlists Testing", "Returned to createPlaylist")
         val jsonBody = JSONObject()
         jsonBody.put("name", playlistName)
         jsonBody.put("public", isPublic)
@@ -76,9 +81,9 @@ object SpotifyPlaylists {
         }
     }
 
-    suspend fun addTrackToPlaylist(playlistId: String, songTitle: String, artistName: String? = null, albumName: String? = null) = withContext(Dispatchers.IO) {
-        val accessToken = SpotifyAuth.getAccessToken()
-        val trackUri = searchTrackUri(songTitle, artistName, albumName)
+    suspend fun addTrackToPlaylist(context: Context, playlistId: String, songTitle: String, artistName: String? = null, albumName: String? = null) = withContext(Dispatchers.IO) {
+        val accessToken = SpotifyAuth.ensureValidAccessToken(context)
+        val trackUri = searchTrackUri(context, songTitle, artistName, albumName)
         val url = "https://api.spotify.com/v1/playlists/$playlistId/tracks"
 
         if (trackUri.isNullOrBlank()) {
@@ -108,9 +113,9 @@ object SpotifyPlaylists {
         response.close()
     }
 
-    suspend fun removeTrackFromPlaylist(playlistId: String, songTitle: String, artistName: String? = null, albumName: String? = null) = withContext(Dispatchers.IO) {
-        val accessToken = SpotifyAuth.getAccessToken()
-        val trackUri = searchTrackUri(songTitle, artistName, albumName)
+    suspend fun removeTrackFromPlaylist(context: Context, playlistId: String, songTitle: String, artistName: String? = null, albumName: String? = null) = withContext(Dispatchers.IO) {
+        val accessToken = SpotifyAuth.ensureValidAccessToken(context)
+        val trackUri = searchTrackUri(context,songTitle, artistName, albumName)
         val url = "https://api.spotify.com/v1/playlists/$playlistId/tracks"
 
         if (trackUri.isNullOrBlank()) {
@@ -142,8 +147,8 @@ object SpotifyPlaylists {
         response.close()
     }
 
-    suspend fun searchTrackUri(songName: String, artistName: String? = null, albumName: String? = null): String? = withContext(Dispatchers.IO) {
-        val accessToken = SpotifyAuth.getAccessToken()
+    suspend fun searchTrackUri(context: Context, songName: String, artistName: String? = null, albumName: String? = null): String? = withContext(Dispatchers.IO) {
+        val accessToken = SpotifyAuth.ensureValidAccessToken(context)
         val normalizedSong = normalize(songName)
         val query = normalizedSong + if (!artistName.isNullOrBlank()) " artist:$artistName" else ""
         val url = "https://api.spotify.com/v1/search?q=${URLEncoder.encode(query, "UTF-8")}&type=track&limit=50"
@@ -156,7 +161,17 @@ object SpotifyPlaylists {
         client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) return@withContext null
 
-            val items = JSONObject(response.body!!.string())
+            val responseBody = response.body!!.string()
+            val json = JSONObject(responseBody)
+
+            // Check for errors first
+            if (json.has("error")) {
+                val error = json.getJSONObject("error")
+                Log.e("SpotifySearch", "Error searching track: ${error.getString("message")}")
+                return@withContext null
+            }
+
+            val items = JSONObject(responseBody)
                 .getJSONObject("tracks")
                 .getJSONArray("items")
 
@@ -179,7 +194,7 @@ object SpotifyPlaylists {
     suspend fun normalize(name: String): String {
         return name.lowercase()
             .replace(Regex("\\(feat\\.[^)]+\\)", RegexOption.IGNORE_CASE), "")
-            .replace(Regex("[^a-z0-9 ]", RegexOption.IGNORE_CASE), "")
+            .replace(Regex("[^a-z0-9 *]", RegexOption.IGNORE_CASE), "")
             .trim()
     }
 }

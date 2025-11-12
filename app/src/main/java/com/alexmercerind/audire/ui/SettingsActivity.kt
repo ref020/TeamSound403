@@ -17,6 +17,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
+import com.alexmercerind.audire.api.Spotify.SpotifyAuth
+import android.content.Intent
 
 class SettingsActivity : AppCompatActivity() {
     private val settingsViewModel: SettingsViewModel by viewModels()
@@ -106,6 +108,15 @@ class SettingsActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.switchAccountButton.setOnClickListener {
+            SpotifyAuth.clearTokens(this)
+
+            val intent = Intent(this, SpotifyLoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
         binding.settingsAppearanceSystemColorSchemeLinearLayout.setOnClickListener {
 
